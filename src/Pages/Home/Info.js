@@ -30,7 +30,7 @@ const Info = () => {
     ]
 
     return (
-        <div className='my-6 lg:my-20 px-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4'>
+        <div className='my-6 lg:my-20 px-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {
                 information.map(singleInfo => <InfoCard
                     key={singleInfo.id}
