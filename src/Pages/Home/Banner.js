@@ -2,18 +2,19 @@ import React from 'react';
 import chair from '../../assets/images/chair.png';
 import Button from '../Shared/Button';
 import background from '../../assets/images/bg.png';
+import './Banner.css'
 
 const Banner = () => {
     return (
         <section style={{
-            background: `url(${background})`,
+            background: `linear-gradient(rgba(255, 255, 255, 0.39), rgba(255, 255, 255, 0.295)), url(${background})`,
             backgroundPosition: '100%',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100%',
             width: '100%',
-            height: '100%'
-            }} className="">
-            <div className="hero min-h-full px-8 py-28 mt-2">
+            // height: '100%'
+            }}>
+            <div className="hero min-h-full px-8 py-20 mt-2">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div>
                     <img src={chair} className="w-100 rounded-lg" alt='' />
