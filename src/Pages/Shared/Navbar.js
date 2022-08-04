@@ -1,8 +1,16 @@
 import React from 'react';
 import CustomLink from './CustomLink';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
+    const [user] = useAuthState(auth);
+    
+    const logout = () => {
+        signOut(auth);
+    }
 
     return (
         <div className="navbar bg-base-100 lg:container lg:mx-auto">
@@ -17,7 +25,14 @@ const Navbar = () => {
                         <li><Link to='/about'>About</Link></li>
                         <li><Link to='/reviews'>Reviews</Link></li>
                         <li><Link to='/contact'>Contact Us</Link></li>
-                        <li><Link to='/login'>Login</Link></li>
+                        <li>
+                            {
+                                user ?
+                                    <button onClick={logout}>Logout</button>
+                                    :
+                                    <Link to='/login'>Login</Link>
+                            }
+                        </li>
                     </ul>
                 </div>
                 <Link to='/'>Doctors Portal</Link>
@@ -29,7 +44,14 @@ const Navbar = () => {
                     <li><CustomLink to='/about'>About</CustomLink></li>
                     <li><CustomLink to='/reviews'>Reviews</CustomLink></li>
                     <li><CustomLink to='/contact'>Contact Us</CustomLink></li>
-                    <li><CustomLink to='/login'>Login</CustomLink></li>
+                    <li>
+                        {
+                            user ?
+                                <button onClick={logout}>Logout</button>
+                                :
+                                <CustomLink to='/login'>Login</CustomLink>
+                        }
+                    </li>
                 </ul>
             </div>
         </div>
