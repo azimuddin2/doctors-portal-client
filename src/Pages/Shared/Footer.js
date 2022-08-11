@@ -7,10 +7,10 @@ const Footer = () => {
         <div style={{
             background: `url(${footer})`,
             backgroundPosition: '100%',
-            backgroundRepeat: '100%',
-            backgroundSize: '100%', width: '100%',
+            width: '100%',
+            backgroundSize: 'cover'
         }}>
-            <footer className="footer px-20 py-20 text-base-content">
+            <footer className="footer px-8 lg:px-20 py-20 text-base-content">
                 <div>
                     <span className="footer-title">Services</span>
                     <Link to='/' className="link link-hover">Emergency Checkup</Link>

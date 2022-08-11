@@ -4,11 +4,11 @@ import Button from '../Shared/Button';
 
 const Treatment = () => {
     return (
-        <section className='px-8 mt-12'>
-            <div className="hero min-h-screen">
+        <section className='px-8 mt-24 lg:mb-36'>
+            <div className="hero">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className='flex-1'>
-                        <img src={treatment} class="w-80 mx-auto rounded-lg" alt='' />
+                        <img src={treatment} className="w-80 mx-auto rounded-lg" alt='' />
                     </div>
                     <div className='flex-1'>
                         <h3 className='text-secondary font-bold mb-2'>Treatment</h3>
