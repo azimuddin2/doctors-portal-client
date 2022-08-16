@@ -1,0 +1,5 @@
+@media only screen and (max-width: 576px) {
+    .background-image{
+        background-image: none !important;
+    }
+}

@@ -46,25 +46,28 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
 
     return (
         <div>
-            <input type="checkbox" id="booking-modal" class="modal-toggle" />
-            <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <label for="booking-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 class="font-bold text-2xl text-center">{name}</h3>
+            <input type="checkbox" id="booking-modal" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 className="font-bold text-2xl text-center">{name}</h3>
                     <form onSubmit={handleBooking}
                         className='grid grid-cols-1 gap-4 justify-items-center my-6'>
-                        <input type="text" disabled value={format(date, 'PP')} class="input input-bordered w-full max-w-xs text-lg" />
+                        <input type="text" disabled value={format(date, 'PP')} className="input input-bordered w-full max-w-xs text-lg" />
 
-                        <select name='slot' class="select select-bordered w-full max-w-xs">
+                        <select name='slot' className="select select-bordered w-full max-w-xs">
                             {
-                                slots.map(slot => <option value={slot}>{slot}</option>)
+                                slots.map((slot, index) => <option
+                                    key={index}
+                                    value={slot}
+                                >{slot}</option>)
                             }
                         </select>
 
-                        <input name='name' type="text" disabled value={user?.displayName || ''} class="input input-bordered w-full max-w-xs" />
-                        <input name='email' type="email" disabled value={user?.email || ''} class="input input-bordered w-full max-w-xs" />
-                        <input name='phone' type="text" placeholder="Phone Number" class="input input-bordered w-full max-w-xs" required/>
-                        <input type="submit" value="SUBMIT" class='btn btn-accent text-white w-full max-w-xs bg-accent' />
+                        <input name='name' type="text" disabled value={user?.displayName || ''} className="input input-bordered w-full max-w-xs" />
+                        <input name='email' type="email" disabled value={user?.email || ''} className="input input-bordered w-full max-w-xs" />
+                        <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" required />
+                        <input type="submit" value="SUBMIT" className='btn btn-accent text-white w-full max-w-xs bg-accent' />
                     </form>
                 </div>
             </div>
