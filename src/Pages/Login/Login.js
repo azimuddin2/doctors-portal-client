@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,6 +16,7 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -37,15 +40,15 @@ const Login = () => {
     };
 
     return (
-        <div class="flex h-screen justify-center items-center">
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="text-center text-2xl">Login</h2>
+        <div className="flex justify-center items-center my-12">
+            <div className="card w-96 bg-base-100 shadow-xl">
+                <div className="card-body">
+                    <h2 className="text-center text-2xl">Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Email</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Email</span>
                             </label>
                             <input
                                 {...register("email", {
@@ -59,17 +62,17 @@ const Login = () => {
                                     }
                                 })}
                                 type="email"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                             />
-                            <label class="label">
-                                {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                            <label className="label">
+                                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
                             </label>
                         </div>
 
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Password</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Password</span>
                             </label>
                             <input
                                 {...register("password", {
@@ -82,19 +85,30 @@ const Login = () => {
                                         message: 'Must be 6 characters or longer',
                                     }
                                 })}
-                                type="password"
-                                class="input input-bordered w-full max-w-xs"
+                                type={showPassword ? "text" : "password"}
+                                className="input input-bordered w-full max-w-xs"
                             />
-                            <label class="label">
-                                {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
-                                {errors.password?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                            <p className='m-12'
+                                onClick={() => setShowPassword(!showPassword)}
+                                style={{ position: 'absolute', top: '10', right: '0', cursor: 'pointer' }}
+                            >
+                                {
+                                    showPassword ?
+                                        <FontAwesomeIcon icon={faEyeSlash}></FontAwesomeIcon>
+                                        :
+                                        <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
+                                }
+                            </p>
+                            <label className="label">
+                                {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
                         </div>
                         {errorMessage}
-                        <input class="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Login' />
+                        <input className="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Login' />
                     </form>
                     <p className='text-center'><small>New to Doctors Portal? <Link className='text-secondary' to='/signup'>Create new account</Link></small></p>
-                    <div class="divider">OR</div>
+                    <div className="divider">OR</div>
                     <SocialLogin></SocialLogin>
                 </div>
             </div>

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import SocialLogin from './SocialLogin';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -15,6 +17,7 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updatingError] = useUpdateProfile(auth);
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -22,7 +25,7 @@ const SignUp = () => {
 
     let errorMessage;
     if (error || updatingError) {
-        errorMessage = <p class='text-red-500 text-center'><small>{error?.message}</small></p>
+        errorMessage = <p className='text-red-500 text-center'><small>{error?.message}</small></p>
     }
 
     if (loading || updating) {
@@ -42,15 +45,15 @@ const SignUp = () => {
 
     return (
         <div>
-            <div class="flex justify-center items-center my-20">
-                <div class="card w-96 bg-base-100 shadow-xl">
-                    <div class="card-body">
-                        <h2 class="text-center text-2xl">Sign Up</h2>
+            <div className="flex justify-center items-center my-12">
+                <div className="card w-96 bg-base-100 shadow-xl">
+                    <div className="card-body">
+                        <h2 className="text-center text-2xl">Sign Up</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
 
-                            <div class="form-control w-full max-w-xs">
-                                <label class="label">
-                                    <span class="label-text">Your Name</span>
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Your Name</span>
                                 </label>
                                 <input
                                     {...register("name", {
@@ -60,17 +63,17 @@ const SignUp = () => {
                                         },
                                     })}
                                     type="text"
-                                    class="input input-bordered w-full max-w-xs"
+                                    className="input input-bordered w-full max-w-xs"
                                 />
-                                <label class="label">
-                                    {errors.name?.type === 'required' && <span class="label-text-alt text-red-500">{errors.name.message}</span>}
+                                <label className="label">
+                                    {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
 
                                 </label>
                             </div>
 
-                            <div class="form-control w-full max-w-xs">
-                                <label class="label">
-                                    <span class="label-text">Email</span>
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
                                 </label>
                                 <input
                                     {...register("email", {
@@ -84,17 +87,17 @@ const SignUp = () => {
                                         }
                                     })}
                                     type="email"
-                                    class="input input-bordered w-full max-w-xs"
+                                    className="input input-bordered w-full max-w-xs"
                                 />
-                                <label class="label">
-                                    {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
-                                    {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                                <label className="label">
+                                    {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                                    {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
                                 </label>
                             </div>
 
-                            <div class="form-control w-full max-w-xs">
-                                <label class="label">
-                                    <span class="label-text">Password</span>
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
                                 </label>
                                 <input
                                     {...register("password", {
@@ -107,19 +110,31 @@ const SignUp = () => {
                                             message: 'Must be 6 characters or longer',
                                         }
                                     })}
-                                    type="password"
-                                    class="input input-bordered w-full max-w-xs"
+                                    type={showPassword ? 'text' : 'password'}
+                                    className="input input-bordered w-full max-w-xs"
                                 />
-                                <label class="label">
-                                    {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
-                                    {errors.password?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                                <p
+                                    className='m-12'
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    style={{ position: 'absolute', top: '10', right: '0', cursor: 'pointer' }}
+                                >
+                                    {
+                                        showPassword ?
+                                            <FontAwesomeIcon icon={faEyeSlash}></FontAwesomeIcon>
+                                            :
+                                            <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
+                                    }
+                                </p>
+                                <label className="label">
+                                    {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                    {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 </label>
                             </div>
                             {errorMessage}
-                            <input class="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Signup' />
+                            <input className="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Signup' />
                         </form>
-                        <p class='text-center'><small>Already have an Account? <Link to='/login' class='text-secondary'>Please Login</Link></small></p>
-                        <div class="divider">OR</div>
+                        <p className='text-center'><small>Already have an Account? <Link to='/login' className='text-secondary'>Please Login</Link></small></p>
+                        <div className="divider">OR</div>
                         <SocialLogin></SocialLogin>
                     </div>
                 </div>
