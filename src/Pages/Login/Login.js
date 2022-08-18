@@ -94,9 +94,9 @@ const Login = () => {
                             >
                                 {
                                     showPassword ?
-                                        <FontAwesomeIcon icon={faEyeSlash}></FontAwesomeIcon>
+                                        <FontAwesomeIcon className='text-gray-500' icon={faEyeSlash}></FontAwesomeIcon>
                                         :
-                                        <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
+                                        <FontAwesomeIcon className='text-gray-400' icon={faEye}></FontAwesomeIcon>
                                 }
                             </p>
                             <label className="label">
