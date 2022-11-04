@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
@@ -7,6 +7,7 @@ import SocialLogin from './SocialLogin';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,10 +19,17 @@ const SignUp = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updatingError] = useUpdateProfile(auth);
     const [showPassword, setShowPassword] = useState(false);
+    const [token] = useToken(user);
 
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
 
     let errorMessage;
     if (error || updatingError) {
@@ -30,10 +38,6 @@ const SignUp = () => {
 
     if (loading || updating) {
         return <Loading></Loading>
-    }
-
-    if (user) {
-        navigate(from, { replace: true });
     }
 
     const onSubmit = async (data) => {
@@ -120,7 +124,7 @@ const SignUp = () => {
                                 >
                                     {
                                         showPassword ?
-                                            <FontAwesomeIcon className='text-gray-500' icon={faEyeSlash}></FontAwesomeIcon>
+                                            <FontAwesomeIcon className='text-gray-400' icon={faEyeSlash}></FontAwesomeIcon>
                                             :
                                             <FontAwesomeIcon className='text-gray-400' icon={faEye}></FontAwesomeIcon>
                                     }

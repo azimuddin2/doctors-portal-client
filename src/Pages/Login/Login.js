@@ -7,6 +7,8 @@ import Loading from '../Shared/Loading';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import useToken from '../../hooks/useToken';
+import { useEffect } from 'react';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,10 +19,17 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
     const [showPassword, setShowPassword] = useState(false);
+    const [token] = useToken(user);
 
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
 
     let errorMessage;
     if (error) {
@@ -29,10 +38,6 @@ const Login = () => {
 
     if (loading) {
         return <Loading></Loading>
-    }
-
-    if (user) {
-        navigate(from, { replace: true });
     }
 
     const onSubmit = data => {
@@ -94,7 +99,7 @@ const Login = () => {
                             >
                                 {
                                     showPassword ?
-                                        <FontAwesomeIcon className='text-gray-500' icon={faEyeSlash}></FontAwesomeIcon>
+                                        <FontAwesomeIcon className='text-gray-400' icon={faEyeSlash}></FontAwesomeIcon>
                                         :
                                         <FontAwesomeIcon className='text-gray-400' icon={faEye}></FontAwesomeIcon>
                                 }
