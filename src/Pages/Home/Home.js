@@ -1,21 +1,21 @@
 import React from 'react';
-import Banner from './Banner';
-import Contact from './Contact';
-import Info from './Info';
-import MakeAppointment from './MakeAppointment';
-import Reviews from './Reviews';
-import Services from './Services';
-import Treatment from './Treatment';
+import Banner from './Banner/Banner';
+import Contact from './Contact/Contact';
+import Information from './Information/Information';
+import MakeAppointment from './MakeAppointment/MakeAppointment';
+import Services from './Services/Services';
+import Testimonial from './Testimonial/Testimonial';
+import Treatment from './Treatment/Treatment';
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <Info></Info>
+            <Information></Information>
             <Services></Services>
             <Treatment></Treatment>
             <MakeAppointment></MakeAppointment>
-            <Reviews></Reviews>
+            <Testimonial></Testimonial>
             <Contact></Contact>
         </div>
     );

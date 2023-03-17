@@ -1,13 +1,13 @@
 import React from 'react';
-import chair from '../../assets/images/chair.png';
-import Button from '../Shared/Button';
-import background from '../../assets/images/bg.png';
+import chair from '../../../assets/images/chair.png';
+import Button from '../../Shared/Button';
+import backgroundImg from '../../../assets/images/bg.png';
 import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
         <section style={{
-            background: `url(${background})`,
+            background: `url(${backgroundImg})`,
             backgroundSize: 'cover',
             width: '100%',
             backgroundPosition: '100%',

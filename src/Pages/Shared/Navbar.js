@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
-import doctorPortal from '../../assets/images/doctor portal.png';
+import logo from '../../assets/images/logo.png';
 
 const Navbar = () => {
     const [user] = useAuthState(auth);
@@ -43,7 +43,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <Link to='/' className='flex justify-items-center items-center'>
-                    <img className='w-6' src={doctorPortal} alt="" />
+                    <img className='w-8' src={logo} alt="" />
                     <span>Doctors Portal</span>
                 </Link>
             </div>

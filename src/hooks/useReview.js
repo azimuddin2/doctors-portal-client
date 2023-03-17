@@ -9,42 +9,42 @@ const useReview = () => {
             img: people1,
             name: 'Winson Herry',
             location: 'California',
-            description: 'It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
+            description: 'It is a long fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
         },
         {
             _id: 2,
             img: people2,
             name: 'Winson Herry',
             location: 'California',
-            description: 'It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
+            description: 'It is a long fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
         },
         {
             _id: 3,
             img: people3,
             name: 'Winson Herry',
             location: 'California',
-            description: 'It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
+            description: 'It is a long fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
         },
         {
             _id: 4,
             img: people1,
             name: 'Winson Herry',
             location: 'California',
-            description: 'It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
+            description: 'It is a long fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
         },
         {
             _id: 5,
             img: people2,
             name: 'Winson Herry',
             location: 'California',
-            description: 'It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
+            description: 'It is a long fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
         },
         {
             _id: 6,
             img: people3,
             name: 'Winson Herry',
             location: 'California',
-            description: 'It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
+            description: 'It is a long fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content'
         },
     ]
     return [reviews];

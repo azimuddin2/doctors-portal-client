@@ -1,16 +1,16 @@
 import React from 'react';
-import clock from '../../assets/icons/clock.svg';
-import marker from '../../assets/icons/marker.svg';
-import phone from '../../assets/icons/phone.svg';
+import clock from '../../../assets/icons/clock.svg';
+import marker from '../../../assets/icons/marker.svg';
+import phone from '../../../assets/icons/phone.svg';
 import InfoCard from './InfoCard';
 
-const Info = () => {
+const Information = () => {
     const information = [
         {
             id: 1,
             img: clock,
             title: 'Opening Hours',
-            description: 'Lorem Ipsum is simply dummy text of the pri',
+            description: 'Open 9.00 am to 5.00 pm Everyday',
             bgColor: 'bg-gradient-to-r from-secondary to-primary'
         },
         {
@@ -41,4 +41,4 @@ const Info = () => {
     );
 };
 
-export default Info;
+export default Information;
