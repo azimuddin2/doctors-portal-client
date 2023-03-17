@@ -23,7 +23,17 @@ const Testimonial = () => {
                     </div>
                 </div>
                 <div>
-                    <Swiper className="mySwiper"
+                    <Swiper
+
+                        style={{
+                            "--swiper-pagination-color": "#19D3AE",
+                            "--swiper-pagination-bullet-inactive-color": "#999999",
+                            "--swiper-pagination-bullet-inactive-opacity": "1",
+                            "--swiper-pagination-bullet-size": "12px",
+                            "--swiper-pagination-bullet-horizontal-gap": "2px"
+                        }}
+
+                        className="mySwiper"
                         breakpoints={{
                             576: {
                                 width: 576,

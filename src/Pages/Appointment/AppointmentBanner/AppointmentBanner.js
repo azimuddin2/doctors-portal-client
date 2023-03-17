@@ -1,6 +1,6 @@
 import React from 'react';
-import chair from '../../assets/images/chair.png';
-import background from '../../assets/images/bg.png';
+import chair from '../../../assets/images/chair.png';
+import background from '../../../assets/images/bg.png';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import './AppointmentBanner.css';

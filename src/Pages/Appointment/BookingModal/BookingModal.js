@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
-import auth from '../../firebase.init';
+import auth from '../../../firebase.init';
 
 const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
     const [user] = useAuthState(auth);
@@ -53,7 +53,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
                     <h3 className="font-bold text-2xl text-center">{name}</h3>
                     <form onSubmit={handleBooking}
                         className='grid grid-cols-1 gap-4 justify-items-center my-6'>
-                        <input type="text" disabled value={format(date, 'PP')} className="input input-bordered w-full max-w-xs text-lg" />
+                        <input type="text" disabled value={format(date, 'PP')} className="input input-bordered w-full max-w-sm text-lg" />
 
                         <select name='slot' className="select select-bordered w-full max-w-xs">
                             {

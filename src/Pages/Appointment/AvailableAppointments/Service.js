@@ -13,7 +13,7 @@ const Service = ({ service, setTreatment }) => {
                             <span>{slots[0]}</span> : <span>Try another date.</span>
                     }
                 </p>
-                <p>{slots.length} Space Available</p>
+                <p>{slots.length} {slots.length > 1 ? "Spaces" : "Space"} Available</p>
                 <div className="card-actions">
                     <label
                         onClick={() => setTreatment(service)}
