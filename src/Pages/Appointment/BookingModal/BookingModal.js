@@ -1,11 +1,8 @@
 import { format } from 'date-fns';
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
-import auth from '../../../firebase.init';
 
 const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
-    const [user] = useAuthState(auth);
     const { _id, name, slots } = treatment;
     const formattedDate = format(date, 'PP');
 
@@ -18,9 +15,9 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
             treatment: name,
             date: formattedDate,
             slot,
-            patientName: user.displayName,
-            patientEmail: user.email,
-            patientPhone: event.target.phone.value
+            // patientName: user.displayName,
+            // patientEmail: user.email,
+            // patientPhone: event.target.phone.value
         }
         // console.log(booking);
         fetch('http://localhost:5000/booking', {
@@ -64,8 +61,8 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
                             }
                         </select>
 
-                        <input name='name' type="text" disabled value={user?.displayName || ''} className="input input-bordered w-full max-w-xs" />
-                        <input name='email' type="email" disabled value={user?.email || ''} className="input input-bordered w-full max-w-xs" />
+                        {/* <input name='name' type="text" disabled value={user?.displayName || ''} className="input input-bordered w-full max-w-xs" />
+                        <input name='email' type="email" disabled value={user?.email || ''} className="input input-bordered w-full max-w-xs" /> */}
                         <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" required />
                         <input type="submit" value="SUBMIT" className='btn btn-accent text-white w-full max-w-xs bg-accent' />
                     </form>

@@ -2,12 +2,10 @@ import React from 'react';
 import CustomLink from './CustomLink';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import logo from '../../assets/images/logo.png';
 
 const Navbar = () => {
-    const [user] = useAuthState(auth);
 
     const logout = () => {
         signOut(auth);
@@ -27,7 +25,7 @@ const Navbar = () => {
                         <li><Link to='/about'>About</Link></li>
                         <li><Link to='/reviews'>Reviews</Link></li>
                         <li><Link to='/contact'>Contact Us</Link></li>
-                        <li>
+                        {/* <li>
                             {
                                 user && <Link to='/dashboard'>Dashboard</Link>
                             }
@@ -39,7 +37,7 @@ const Navbar = () => {
                                     :
                                     <Link to='/login'>Login</Link>
                             }
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                 <Link to='/' className='flex justify-items-center items-center'>
@@ -55,7 +53,7 @@ const Navbar = () => {
                     <li><CustomLink to='/reviews'>Reviews</CustomLink></li>
                     <li><CustomLink to='/contact'>Contact Us</CustomLink></li>
                     <li>
-                        {
+                        {/* {
                             user && <CustomLink to='/dashboard'>Dashboard</CustomLink>
                         }
                     </li>
@@ -65,7 +63,7 @@ const Navbar = () => {
                                 <button onClick={logout}>Logout</button>
                                 :
                                 <CustomLink to='/login'>Login</CustomLink>
-                        }
+                        } */}
                     </li>
                 </ul>
             </div>

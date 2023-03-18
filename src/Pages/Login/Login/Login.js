@@ -1,47 +1,16 @@
 import React, { useState } from 'react';
-import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
-import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import Loading from '../Shared/Loading';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import useToken from '../../hooks/useToken';
-import { useEffect } from 'react';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useSignInWithEmailAndPassword(auth);
     const [showPassword, setShowPassword] = useState(false);
-    const [token] = useToken(user);
-
-    const navigate = useNavigate();
-    const location = useLocation();
-    let from = location.state?.from?.pathname || "/";
-
-    useEffect(() => {
-        if (token) {
-            navigate(from, { replace: true });
-        }
-    }, [token, from, navigate])
-
-    let errorMessage;
-    if (error) {
-        errorMessage = <p className='text-red-500 text-center'><small>{error?.message}</small></p>
-    }
-
-    if (loading) {
-        return <Loading></Loading>
-    }
 
     const onSubmit = data => {
-        signInWithEmailAndPassword(data.email, data.password);
+        console.log(data.email, data.password);
     };
 
     return (
@@ -109,7 +78,6 @@ const Login = () => {
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
                         </div>
-                        {errorMessage}
                         <input className="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Login' />
                     </form>
                     <p className='text-center'><small>New to Doctors Portal? <Link className='text-secondary' to='/signup'>Create new account</Link></small></p>

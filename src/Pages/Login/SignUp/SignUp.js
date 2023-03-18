@@ -1,51 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import auth from '../../firebase.init';
-import Loading from '../Shared/Loading';
-import SocialLogin from './SocialLogin';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import useToken from '../../hooks/useToken';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile, updating, updatingError] = useUpdateProfile(auth);
     const [showPassword, setShowPassword] = useState(false);
-    const [token] = useToken(user);
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    let from = location.state?.from?.pathname || "/";
-
-    useEffect(() => {
-        if (token) {
-            navigate(from, { replace: true });
-        }
-    }, [token, from, navigate])
-
-    let errorMessage;
-    if (error || updatingError) {
-        errorMessage = <p className='text-red-500 text-center'><small>{error?.message}</small></p>
-    }
-
-    if (loading || updating) {
-        return <Loading></Loading>
-    }
-
-    const onSubmit = async (data) => {
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.name });
-        alert('Updated profile');
+    const onSubmit = (data) => {
+        console.log(data.email, data.password);
     };
-
 
     return (
         <div>
@@ -134,7 +100,6 @@ const SignUp = () => {
                                     {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 </label>
                             </div>
-                            {errorMessage}
                             <input className="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Signup' />
                         </form>
                         <p className='text-center'><small>Already have an Account? <Link to='/login' className='text-secondary'>Please Login</Link></small></p>
