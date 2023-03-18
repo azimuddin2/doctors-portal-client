@@ -1,16 +1,46 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const onSubmit = (data) => {
-        console.log(data.email, data.password);
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User Created Successfully.')
+                handleUpdateUserProfile(data.name);
+                reset();
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                toast.error(error.message);
+            })
+    };
+
+    const handleUpdateUserProfile = (name) => {
+        const userInfo = {
+            displayName: name
+        };
+
+        updateUserProfile(userInfo)
+            .then(() => { })
+            .catch(error => {
+                toast.error(error.message);
+            })
     };
 
     return (

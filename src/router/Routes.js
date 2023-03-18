@@ -4,6 +4,7 @@ import Appointment from "../Pages/Appointment/Appointment/Appointment";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import SignUp from "../Pages/Login/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,9 @@ const router = createBrowserRouter([
             },
             {
                 path: 'appointment',
-                element: <Appointment></Appointment>
+                element: <PrivateRoute>
+                    <Appointment></Appointment>
+                </PrivateRoute>
             },
             {
                 path: 'login',

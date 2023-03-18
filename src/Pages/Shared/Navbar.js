@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CustomLink from './CustomLink';
 import { Link } from 'react-router-dom';
-import auth from '../../firebase.init';
-import { signOut } from 'firebase/auth';
 import logo from '../../assets/images/logo.png';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
 
-    const logout = () => {
-        signOut(auth);
-        localStorage.removeItem('accessToken');
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => {
+                toast.error(error.message);
+            })
     }
 
     return (
@@ -25,19 +29,19 @@ const Navbar = () => {
                         <li><Link to='/about'>About</Link></li>
                         <li><Link to='/reviews'>Reviews</Link></li>
                         <li><Link to='/contact'>Contact Us</Link></li>
-                        {/* <li>
+                        <li>
                             {
-                                user && <Link to='/dashboard'>Dashboard</Link>
+                                user?.uid && <Link to='/dashboard'>Dashboard</Link>
                             }
                         </li>
                         <li>
                             {
-                                user ?
-                                    <button onClick={logout}>Logout</button>
+                                user?.uid ?
+                                    <button onClick={handleLogout}>Logout</button>
                                     :
                                     <Link to='/login'>Login</Link>
                             }
-                        </li> */}
+                        </li>
                     </ul>
                 </div>
                 <Link to='/' className='flex justify-items-center items-center'>
@@ -53,17 +57,17 @@ const Navbar = () => {
                     <li><CustomLink to='/reviews'>Reviews</CustomLink></li>
                     <li><CustomLink to='/contact'>Contact Us</CustomLink></li>
                     <li>
-                        {/* {
-                            user && <CustomLink to='/dashboard'>Dashboard</CustomLink>
+                        {
+                            user?.uid && <CustomLink to='/dashboard'>Dashboard</CustomLink>
                         }
                     </li>
                     <li>
                         {
-                            user ?
-                                <button onClick={logout}>Logout</button>
+                            user?.uid ?
+                                <button onClick={handleLogout}>Logout</button>
                                 :
                                 <CustomLink to='/login'>Login</CustomLink>
-                        } */}
+                        }
                     </li>
                 </ul>
             </div>
