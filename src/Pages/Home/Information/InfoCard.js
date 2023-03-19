@@ -8,9 +8,9 @@ const InfoCard = ({ singleInfo }) => {
             <figure>
                 <img className='pl-0 lg:pl-6' src={img} alt={title} />
             </figure>
-            <div className="card-body">
-                <h2 className="card-title">{title}</h2>
-                <p>{description}</p>
+            <div className="card-body pt-4 lg:pt-8">
+                <h2 className="card-title justify-center lg:justify-start">{title}</h2>
+                <p className='text-center lg:text-left'>{description}</p>
             </div>
         </div>
     );

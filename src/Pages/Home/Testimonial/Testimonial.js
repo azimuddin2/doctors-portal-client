@@ -4,7 +4,7 @@ import { Pagination, A11y, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import quote from '../../../assets/icons/quote.svg';
-import Review from './Review';
+import Review from '../../../components/Review/Review';
 import useReview from '../../../hooks/useReview';
 
 const Testimonial = () => {
@@ -24,15 +24,13 @@ const Testimonial = () => {
                 </div>
                 <div>
                     <Swiper
-
                         style={{
-                            "--swiper-pagination-color": "#19D3AE",
+                            "--swiper-pagination-color": "#04C8A4",
                             "--swiper-pagination-bullet-inactive-color": "#999999",
                             "--swiper-pagination-bullet-inactive-opacity": "1",
                             "--swiper-pagination-bullet-size": "12px",
-                            "--swiper-pagination-bullet-horizontal-gap": "2px"
+                            "--swiper-pagination-bullet-horizontal-gap": "3px"
                         }}
-
                         className="mySwiper"
                         breakpoints={{
                             576: {
@@ -49,7 +47,6 @@ const Testimonial = () => {
 
                             },
                         }}
-
                         modules={[Pagination, A11y, Autoplay]}
                         spaceBetween={24}
                         autoplay={{
