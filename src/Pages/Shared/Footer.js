@@ -30,10 +30,10 @@ const Footer = () => {
                     <span className="footer-title">OUR ADDRESS</span>
                     <p>New York - 101010 Hudson</p>
                     <div className='flex items-center gap-2 text-accent mt-2'>
-                        <FaFacebook className='text-3xl cursor-pointer'></FaFacebook>
-                        <FaLinkedin className='text-3xl cursor-pointer'></FaLinkedin>
-                        <FaWhatsapp className='text-3xl cursor-pointer'></FaWhatsapp>
-                        <FaInstagram className='text-3xl cursor-pointer'></FaInstagram>
+                        <FaFacebook className='text-2xl cursor-pointer'></FaFacebook>
+                        <FaLinkedin className='text-2xl cursor-pointer'></FaLinkedin>
+                        <FaWhatsapp className='text-2xl cursor-pointer'></FaWhatsapp>
+                        <FaInstagram className='text-2xl cursor-pointer'></FaInstagram>
                     </div>
                 </div>
             </footer>
@@ -42,12 +42,12 @@ const Footer = () => {
             </div>
             <ScrollToTop
                 smooth
-                className=" animate-bounce"
+                className="animate-bounce flex justify-center items-center"
                 color="#fff"
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 top="400"
-                style={{ background: "linear-gradient(#19D3AE, #0FCFEC)", padding: "10px", boxShadow: 'none', borderRadius: "50px" }}
+                style={{ background: "linear-gradient(#19D3AE, #0FCFEC)", boxShadow: 'none', borderRadius: "50px"}}
             />
         </div>
     );

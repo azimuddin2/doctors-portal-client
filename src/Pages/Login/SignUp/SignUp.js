@@ -45,8 +45,8 @@ const SignUp = () => {
 
     return (
         <div>
-            <div className="flex justify-center items-center my-12">
-                <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="flex justify-center items-center my-12 px-3">
+                <div className="card w-96 shadow-lg">
                     <div className="card-body">
                         <h2 className="text-center text-2xl">Sign Up</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -59,11 +59,11 @@ const SignUp = () => {
                                     {...register("name", {
                                         required: {
                                             value: true,
-                                            message: 'Name is Required',
+                                            message: 'Name is required',
                                         },
                                     })}
                                     type="text"
-                                    className="input input-bordered w-full max-w-xs"
+                                    className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
                                 />
                                 <label className="label">
                                     {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
@@ -79,7 +79,7 @@ const SignUp = () => {
                                     {...register("email", {
                                         required: {
                                             value: true,
-                                            message: 'Email is Required',
+                                            message: 'Email is required',
                                         },
                                         pattern: {
                                             value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
@@ -87,7 +87,7 @@ const SignUp = () => {
                                         }
                                     })}
                                     type="email"
-                                    className="input input-bordered w-full max-w-xs"
+                                    className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
                                 />
                                 <label className="label">
                                     {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
@@ -103,7 +103,7 @@ const SignUp = () => {
                                     {...register("password", {
                                         required: {
                                             value: true,
-                                            message: 'Password is Required',
+                                            message: 'Password is required',
                                         },
                                         minLength: {
                                             value: 6,
@@ -111,7 +111,7 @@ const SignUp = () => {
                                         }
                                     })}
                                     type={showPassword ? 'text' : 'password'}
-                                    className="input input-bordered w-full max-w-xs"
+                                    className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
                                 />
                                 <p
                                     className='m-12'
