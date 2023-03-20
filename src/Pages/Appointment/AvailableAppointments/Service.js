@@ -4,7 +4,7 @@ const Service = ({ service, setTreatment }) => {
     const { name, slots } = service;
 
     return (
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-base-100 shadow-lg">
             <div className="card-body items-center text-center">
                 <h2 className="card-title text-secondary">{name}</h2>
                 <p>

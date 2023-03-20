@@ -29,7 +29,7 @@ const Footer = () => {
                 <div>
                     <span className="footer-title">OUR ADDRESS</span>
                     <p>New York - 101010 Hudson</p>
-                    <div className='flex items-center gap-1 text-accent'>
+                    <div className='flex items-center gap-2 text-accent mt-2'>
                         <FaFacebook className='text-3xl cursor-pointer'></FaFacebook>
                         <FaLinkedin className='text-3xl cursor-pointer'></FaLinkedin>
                         <FaWhatsapp className='text-3xl cursor-pointer'></FaWhatsapp>
@@ -38,7 +38,7 @@ const Footer = () => {
                 </div>
             </footer>
             <div className="text-center py-8">
-                <p><span>Copyright © 2023 All Rights Reserved</span></p>
+                <p><span>Copyright © 2023 Doctors Portal</span></p>
             </div>
             <ScrollToTop
                 smooth

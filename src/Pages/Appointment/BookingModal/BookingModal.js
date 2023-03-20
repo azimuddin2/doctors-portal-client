@@ -1,8 +1,10 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
+    const { user } = useContext(AuthContext);
     const { _id, name, slots } = treatment;
     const formattedDate = format(date, 'PP');
 
@@ -15,11 +17,11 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
             treatment: name,
             date: formattedDate,
             slot,
-            // patientName: user.displayName,
-            // patientEmail: user.email,
-            // patientPhone: event.target.phone.value
-        }
-        // console.log(booking);
+            patientName: user.displayName,
+            patientEmail: user.email,
+            patientPhone: event.target.phone.value
+        };
+
         fetch('http://localhost:5000/booking', {
             method: 'POST',
             headers: {
@@ -39,20 +41,26 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
                 // to close the modal
                 setTreatment(null);
             })
-    }
+    };
 
     return (
         <div>
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2 text-white">✕</label>
                     <h3 className="font-bold text-2xl text-center">{name}</h3>
-                    <form onSubmit={handleBooking}
-                        className='grid grid-cols-1 gap-4 justify-items-center my-6'>
-                        <input type="text" disabled value={format(date, 'PP')} className="input input-bordered w-full max-w-sm text-lg" />
-
-                        <select name='slot' className="select select-bordered w-full max-w-xs">
+                    <form
+                        onSubmit={handleBooking}
+                        className='grid grid-cols-1 gap-4 justify-items-center my-6'
+                    >
+                        <input
+                            type="text"
+                            disabled
+                            value={format(date, 'PP')}
+                            className="input input-bordered w-full max-w-sm text-lg"
+                        />
+                        <select name='slot' className="select select-bordered w-full max-w-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary">
                             {
                                 slots.map((slot, index) => <option
                                     key={index}
@@ -60,11 +68,32 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
                                 >{slot}</option>)
                             }
                         </select>
-
-                        {/* <input name='name' type="text" disabled value={user?.displayName || ''} className="input input-bordered w-full max-w-xs" />
-                        <input name='email' type="email" disabled value={user?.email || ''} className="input input-bordered w-full max-w-xs" /> */}
-                        <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" required />
-                        <input type="submit" value="SUBMIT" className='btn btn-accent text-white w-full max-w-xs bg-accent' />
+                        <input
+                            name='name'
+                            type="text"
+                            disabled
+                            value={user?.displayName || ''}
+                            className="input input-bordered w-full max-w-sm"
+                        />
+                        <input
+                            name='email'
+                            type="email"
+                            disabled
+                            value={user?.email || ''}
+                            className="input input-bordered w-full max-w-sm"
+                        />
+                        <input
+                            name='phone'
+                            type="text"
+                            placeholder="Phone Number"
+                            className="input input-bordered w-full max-w-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
+                            required
+                        />
+                        <input
+                            type="submit"
+                            value="SUBMIT"
+                            className='btn btn-accent text-white w-full max-w-sm bg-accent'
+                        />
                     </form>
                 </div>
             </div>
