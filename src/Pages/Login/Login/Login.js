@@ -6,23 +6,31 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import useToken from '../../../hooks/useToken';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const onSubmit = data => {
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setLoginUserEmail(data.email);
                 reset();
-                navigate(from, { replace: true });
             })
             .catch(error => {
                 toast.error(error.message);

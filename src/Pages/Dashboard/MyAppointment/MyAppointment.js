@@ -12,7 +12,11 @@ const MyAppointment = () => {
     const { data: bookings, isPending } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url)
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = await res.json()
             return data;
         }
@@ -23,7 +27,7 @@ const MyAppointment = () => {
     }
 
     return (
-        <div className=' h-full p-10' style={{backgroundColor: '#F1F5F9'}}>
+        <div className=' h-full p-10' style={{ backgroundColor: '#F1F5F9' }}>
             <h2 className=' text-2xl font-medium mb-5'>My Appointment</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">

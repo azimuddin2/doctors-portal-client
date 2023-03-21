@@ -6,15 +6,22 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import useToken from '../../../hooks/useToken';
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);    
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const onSubmit = (data) => {
         createUser(data.email, data.password)
@@ -24,7 +31,7 @@ const SignUp = () => {
                 toast.success('User Created Successfully.')
                 handleUpdateUserProfile(data.name);
                 reset();
-                navigate(from, { replace: true });
+                saveUserDataBase(data.name, data.email);
             })
             .catch(error => {
                 toast.error(error.message);
@@ -40,6 +47,22 @@ const SignUp = () => {
             .then(() => { })
             .catch(error => {
                 toast.error(error.message);
+            })
+    };
+
+    const saveUserDataBase = (name, email) => {
+        const user = { name, email };
+
+        fetch('http://localhost:5000/user', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(email);
             })
     };
 
