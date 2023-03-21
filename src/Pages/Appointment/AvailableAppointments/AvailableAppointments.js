@@ -2,19 +2,25 @@ import { format } from 'date-fns';
 import React, { useState } from 'react';
 import BookingModal from '../BookingModal/BookingModal';
 import Service from './Service';
-import { useQuery } from 'react-query'
 import Loading from '../../Shared/Loading';
+import { useQuery } from '@tanstack/react-query';
 
 const AvailableAppointments = ({ date }) => {
     const [treatment, setTreatment] = useState(null);
 
     const formattedDate = format(date, 'PP');
+    const url = `http://localhost:5000/available?date=${formattedDate}`;
 
-    const { data: services, isLoading, refetch } = useQuery(['available', formattedDate], () => fetch(`http://localhost:5000/available?date=${formattedDate}`)
-        .then(res => res.json())
-    )
+    const { data: services, isPending, refetch } = useQuery({
+        queryKey: ['available', formattedDate],
+        queryFn: async () => {
+            const res = await fetch(url)
+            const data = await res.json()
+            return data;
+        }
+    });
 
-    if (isLoading) {
+    if (isPending) {
         return <Loading></Loading>
     }
 
