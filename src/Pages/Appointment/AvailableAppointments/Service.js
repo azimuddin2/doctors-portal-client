@@ -20,7 +20,7 @@ const Service = ({ service, setTreatment }) => {
                         disabled={slots.length === 0}
                         htmlFor="booking-modal"
                         className="btn btn-primary text-white font-bold bg-gradient-to-r from-secondary to-primary">
-                        Book Appointment
+                        Booking Appointment
                     </label>
                 </div>
             </div>

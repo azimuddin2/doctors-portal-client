@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import Loading from '../../Shared/Loading';
 
 const AddDoctor = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const imageHostKey = process.env.REACT_APP_imgBB_key;
 
     const { data: appointments, isLoading } = useQuery({
         queryKey: ['appointments'],
@@ -16,8 +18,41 @@ const AddDoctor = () => {
     })
 
     const onSubmit = (data) => {
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    const doctorInfo = {
+                        name: data.name,
+                        email: data.email,
+                        specialty: data.specialty,
+                        image: imgData.data.url,
+                    }
 
-    }
+                    // save doctor information to the database
+                    fetch('http://localhost:5000/doctor', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(doctorInfo)
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            toast.success(`${result.name} is added successfully`)
+                            reset();
+                        })
+                }
+            })
+    };
 
     if (isLoading) {
         return <Loading></Loading>
@@ -31,7 +66,7 @@ const AddDoctor = () => {
 
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
-                            <span className="label-text">Your Name</span>
+                            <span className="label-text">Name</span>
                         </label>
                         <input
                             {...register("name", {
@@ -77,7 +112,6 @@ const AddDoctor = () => {
                         <label className="label">
                             <span className="label-text">Specialty</span>
                         </label>
-
                         <select
                             {...register("specialty")}
                             className="select select-bordered w-full max-w-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary">
@@ -88,6 +122,25 @@ const AddDoctor = () => {
                                 >{appointment?.name}</option>)
                             }
                         </select>
+                    </div>
+
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Photo</span>
+                        </label>
+                        <input
+                            {...register("image", {
+                                required: {
+                                    value: true,
+                                    message: 'Photo is required',
+                                },
+                            })}
+                            type="file"
+                            className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
+                        />
+                        <label className="label">
+                            {errors.image?.type === 'required' && <span className="label-text-alt text-red-500">{errors.image.message}</span>}
+                        </label>
                     </div>
 
                     <input className="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Save' />
