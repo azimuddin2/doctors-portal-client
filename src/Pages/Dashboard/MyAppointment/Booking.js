@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Booking = ({ booking, index }) => {
-    const { patientName, treatment, date, slot } = booking;
+const Booking = ({ booking, index, setPayment }) => {
+    const { patientName, treatment, date, slot, price } = booking;
 
     return (
         <tr>
@@ -10,6 +10,16 @@ const Booking = ({ booking, index }) => {
             <td>{treatment}</td>
             <td>{date}</td>
             <td>{slot}</td>
+            <td className='text-secondary font-medium'>${price}</td>
+            <td>
+                <label
+                    onClick={() => setPayment(booking)}
+                    htmlFor="payment-modal"
+                    className="btn btn-sm capitalize btn-primary text-white font-medium bg-gradient-to-r from-secondary to-primary"
+                >
+                    Pay
+                </label>
+            </td>
         </tr>
     );
 };

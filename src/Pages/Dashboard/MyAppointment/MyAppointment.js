@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading';
 import Booking from './Booking';
 import appointmentCalendar from '../../../assets/images/appointment-calendar.gif';
 import { Link } from 'react-router-dom';
 import Button from '../../Shared/Button';
+import PaymentModal from '../PaymentModal/PaymentModal';
 
 const MyAppointment = () => {
     const { user } = useContext(AuthContext);
+    const [payment, setPayment] = useState(null);
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
@@ -44,11 +46,13 @@ const MyAppointment = () => {
                             <table className="table w-full">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th></th>
                                         <th>Name</th>
                                         <th>Treatment</th>
                                         <th>Date</th>
                                         <th>Time</th>
+                                        <th>Price</th>
+                                        <th>Payment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,6 +61,7 @@ const MyAppointment = () => {
                                             key={booking._id}
                                             index={index}
                                             booking={booking}
+                                            setPayment={setPayment}
                                         ></Booking>)
                                     }
                                 </tbody>
@@ -70,6 +75,12 @@ const MyAppointment = () => {
                             <Button>Appointment</Button>
                         </Link>
                     </div>
+            }
+            {
+                payment && <PaymentModal
+                    payment={payment}
+                    setPayment={setPayment}
+                ></PaymentModal>
             }
         </section>
     );
