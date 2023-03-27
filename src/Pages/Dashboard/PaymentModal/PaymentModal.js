@@ -4,9 +4,8 @@ import React from 'react';
 import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
-console.log(stripePromise);
 
-const PaymentModal = ({ payment, setPayment }) => {
+const PaymentModal = ({ payment, setPayment, refetch }) => {
     const { patientName, treatment, date, slot, price } = payment;
 
     return (
@@ -22,6 +21,8 @@ const PaymentModal = ({ payment, setPayment }) => {
                     <div>
                         <Elements stripe={stripePromise}>
                             <CheckoutForm
+                                refetch={refetch}
+                                payment={payment}
                                 setPayment={setPayment}
                             />
                         </Elements>

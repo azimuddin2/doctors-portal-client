@@ -14,7 +14,7 @@ const MyAppointment = () => {
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
-    const { data: bookings, isLoading } = useQuery({
+    const { data: bookings, isLoading, refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             try {
@@ -80,6 +80,7 @@ const MyAppointment = () => {
                 payment && <PaymentModal
                     payment={payment}
                     setPayment={setPayment}
+                    refetch={refetch}
                 ></PaymentModal>
             }
         </section>
