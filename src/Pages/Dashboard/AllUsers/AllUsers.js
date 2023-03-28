@@ -1,10 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import ConfirmationModal from '../../Shared/ConfirmationModal';
 import Loading from '../../Shared/Loading';
 import User from './User';
 
 const AllUsers = () => {
-    const { data: users, isPending, refetch } = useQuery({
+    const [deletingUser, setDeletingUser] = useState(null);
+
+    const { data: users, isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users');
@@ -12,9 +16,28 @@ const AllUsers = () => {
             return data;
         }
     })
-    console.log(users)
 
-    if (isPending) {
+    const handleDeleteUser = (user) => {
+        fetch(`http://localhost:5000/user/${user._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`User ${user.email} deleted successfully`)
+                }
+            })
+    };
+
+    const closeModal = () => {
+        setDeletingUser(null);
+    };
+
+    if (isLoading) {
         return <Loading></Loading>
     }
 
@@ -39,11 +62,19 @@ const AllUsers = () => {
                                 index={index}
                                 user={user}
                                 refetch={refetch}
+                                setDeletingUser={setDeletingUser}
                             ></User>)
                         }
                     </tbody>
                 </table>
             </div>
+            {
+                deletingUser && <ConfirmationModal
+                    modalData={deletingUser}
+                    successModal={handleDeleteUser}
+                    closeModal={closeModal}
+                ></ConfirmationModal>
+            }
         </div>
     );
 };

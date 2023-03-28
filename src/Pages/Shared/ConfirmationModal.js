@@ -9,7 +9,8 @@ const ConfirmationModal = ({ modalData, closeModal, successModal }) => {
                 <div className="modal-box">
                     <RiErrorWarningLine style={{ color: '#f8bb86' }} className='text-8xl mx-auto'></RiErrorWarningLine>
                     <h3 className="font-semibold text-4xl text-center">Are you sure?</h3>
-                    <p className="py-4 text-center text-xl font-medium">{modalData.name}</p>
+                    <p className="pt-4 text-center text-xl font-medium">{modalData.name}</p>
+                    <p className="pb-4 text-center text-lg">{modalData.email}</p>
                     <div className="modal-action justify-center">
                         <label
                             onClick={closeModal}

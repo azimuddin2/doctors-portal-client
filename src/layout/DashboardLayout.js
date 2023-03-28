@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 import Navbar from '../Pages/Shared/Navbar';
+import { FiUserPlus, FiUserMinus, FiUsers } from 'react-icons/fi';
+import { TbClipboardList } from 'react-icons/tb';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
@@ -18,14 +21,13 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-64 text-base-content">
-                        {/* Sidebar content here */}
-                        <li><Link to="/dashboard">My Appointment</Link></li>
+                    <ul className="menu p-4 w-64 lg:bg-inherit bg-base-100 text-base-content">
+                        <li><Sidebar to="/dashboard"><TbClipboardList className='text-xl'></TbClipboardList>My Appointment</Sidebar></li>
                         {
                             isAdmin && <>
-                                <li><Link to="/dashboard/users">All Users</Link></li>
-                                <li><Link to="/dashboard/add-doctor">Add Doctor</Link></li>
-                                <li><Link to="/dashboard/manage-doctors">Manage Doctors</Link></li>
+                                <li><Sidebar to="/dashboard/users"><FiUsers></FiUsers>All Users</Sidebar></li>
+                                <li><Sidebar to="/dashboard/add-doctor"><FiUserPlus></FiUserPlus>Add Doctor</Sidebar></li>
+                                <li><Sidebar to="/dashboard/manage-doctors"><FiUserMinus></FiUserMinus>Manage Doctors</Sidebar></li>
                             </>
                         }
                     </ul>

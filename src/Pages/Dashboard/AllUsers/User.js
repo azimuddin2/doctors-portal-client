@@ -3,7 +3,7 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 import { GrUserAdmin } from 'react-icons/gr';
 import { toast } from 'react-toastify';
 
-const User = ({ user, index, refetch }) => {
+const User = ({ user, index, refetch, setDeletingUser }) => {
     const { _id, name, email } = user;
 
     const handleMakeAdmin = (id) => {
@@ -41,7 +41,12 @@ const User = ({ user, index, refetch }) => {
                 }
             </td>
             <td>
-                <RiDeleteBin5Line className='text-2xl text-red-500 cursor-pointer'></RiDeleteBin5Line>
+                <label
+                    onClick={() => setDeletingUser(user)}
+                    htmlFor="confirmation-modal"
+                >
+                    <RiDeleteBin5Line className='text-2xl text-red-500 cursor-pointer'></RiDeleteBin5Line>
+                </label>
             </td>
         </tr>
     );
