@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Booking = ({ booking, index, setPayment, isLoading }) => {
+const Booking = ({ booking, index, setPayment }) => {
     const { patientName, treatment, date, slot, price, paid, transactionId } = booking;
 
     return (

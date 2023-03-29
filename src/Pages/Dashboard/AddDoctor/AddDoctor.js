@@ -1,11 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Loading from '../../Shared/Loading';
+import { BiImageAdd } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 const AddDoctor = () => {
+    const [accepted, setAccepted] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const imageHostKey = process.env.REACT_APP_imgBB_key;
 
     const { data: appointments, isLoading } = useQuery({
@@ -47,8 +51,11 @@ const AddDoctor = () => {
                     })
                         .then(res => res.json())
                         .then(result => {
-                            toast.success(`${result.name} is added successfully`)
-                            reset();
+                            if (result.acknowledged) {
+                                toast.success('Doctor is added successfully.');
+                                reset();
+                                navigate('/dashboard/manage-doctors');
+                            }
                         })
                 }
             })
@@ -59,12 +66,15 @@ const AddDoctor = () => {
     }
 
     return (
-        <div className='h-full p-10' style={{ backgroundColor: '#F1F5F9' }}>
-            <h2 className=' text-2xl font-medium mb-5'>Add a New Doctor</h2>
-            <div className='bg-white w-96 py-8 px-10'>
-                <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='h-full p-3 lg:p-16' style={{ backgroundColor: '#F1F5F9' }}>
+            <h2 className=' text-2xl font-medium mb-5 text-center md:text-left'>Add a New Doctor</h2>
+            <div className='bg-white w-full py-10 px-4 lg:px-10 rounded-xl shadow-md'>
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0 md:gap-3 lg:gap-4"
+                >
 
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full max-w-sm">
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
@@ -76,7 +86,7 @@ const AddDoctor = () => {
                                 },
                             })}
                             type="text"
-                            className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full max-w-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
                         />
                         <label className="label">
                             {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
@@ -84,7 +94,7 @@ const AddDoctor = () => {
                         </label>
                     </div>
 
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full max-w-sm">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
@@ -100,7 +110,7 @@ const AddDoctor = () => {
                                 }
                             })}
                             type="email"
-                            className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full max-w-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
                         />
                         <label className="label">
                             {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
@@ -108,7 +118,7 @@ const AddDoctor = () => {
                         </label>
                     </div>
 
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full max-w-sm">
                         <label className="label">
                             <span className="label-text">Specialty</span>
                         </label>
@@ -124,9 +134,12 @@ const AddDoctor = () => {
                         </select>
                     </div>
 
-                    <div className="form-control w-full max-w-xs">
-                        <label className="label">
-                            <span className="label-text">Photo</span>
+                    <div className="form-control w-full max-w-sm mt-4 lg:mt-0">
+                        <label htmlFor='image' className="input input-bordered w-full h-24 max-w-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer text-center pt-4">
+                            <span className="label-text text-accent font-medium">Upload Photo</span>
+                            <div className=' flex justify-center items-center'>
+                                <BiImageAdd className='text-4xl text-accent'></BiImageAdd>
+                            </div>
                         </label>
                         <input
                             {...register("image", {
@@ -135,15 +148,31 @@ const AddDoctor = () => {
                                     message: 'Photo is required',
                                 },
                             })}
+                            id="image"
                             type="file"
-                            className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
+                            className="hidden"
                         />
                         <label className="label">
                             {errors.image?.type === 'required' && <span className="label-text-alt text-red-500">{errors.image.message}</span>}
                         </label>
                     </div>
 
-                    <input className="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Save' />
+                    <div className="form-control">
+                        <label className="label flex justify-start items-center">
+                            <input
+                                onClick={() => setAccepted(!accepted)}
+                                type="checkbox"
+                                className="checkbox checkbox-accent" />
+                            <span className="label-text ml-3 text-accent font-semibold text-lg">Remember me</span>
+                        </label>
+                    </div>
+
+                    <input
+                        disabled={!accepted}
+                        className="btn btn-accent text-white w-full max-w-sm"
+                        type="submit"
+                        value='Save'
+                    />
                 </form>
             </div>
         </div>

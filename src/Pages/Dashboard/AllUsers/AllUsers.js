@@ -42,8 +42,8 @@ const AllUsers = () => {
     }
 
     return (
-        <div className=' h-full p-10' style={{ backgroundColor: '#F1F5F9' }}>
-            <h2 className=' text-2xl font-medium mb-5'>All Users</h2>
+        <div className='h-full p-4 lg:p-10' style={{ backgroundColor: '#F1F5F9' }}>
+            <h2 className='text-2xl font-medium mb-5'>All Users</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
