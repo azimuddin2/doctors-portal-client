@@ -2,9 +2,9 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import google from '../../../assets/social/google.png';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useToken from '../../../hooks/useToken';
+import { FcGoogle } from 'react-icons/fc';
 
 const SocialLogin = () => {
     const { signInWithGoogle } = useContext(AuthContext);
@@ -37,8 +37,9 @@ const SocialLogin = () => {
         <div>
             <button
                 onClick={handleSignInWithGoogle}
-                className="btn btn-outline w-full max-w-xs">
-                <img src={google} alt="" />
+                className="btn btn-outline w-full max-w-xs"
+            >
+                <FcGoogle className='text-3xl'></FcGoogle>
                 <span className='ml-1'>CONTINUE WITH GOOGLE</span>
             </button>
         </div>
