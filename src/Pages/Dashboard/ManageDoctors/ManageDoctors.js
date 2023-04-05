@@ -4,8 +4,10 @@ import { toast } from 'react-toastify';
 import ConfirmationModal from '../../Shared/ConfirmationModal';
 import Loading from '../../Shared/Loading';
 import DoctorRow from './DoctorRow';
+import useTitle from '../../../hooks/useTitle';
 
 const ManageDoctors = () => {
+    useTitle('Manage Doctor');
     const [deletingDoctor, setDeletingDoctor] = useState(null);
 
     const { data: doctors, isLoading, refetch } = useQuery({
@@ -35,7 +37,7 @@ const ManageDoctors = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data.deletedCount > 0){
+                if (data.deletedCount > 0) {
                     refetch();
                     toast.success(`Doctor ${doctor.name} deleted successfully`)
                 }

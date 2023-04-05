@@ -7,8 +7,10 @@ import appointmentCalendar from '../../../assets/images/appointment-calendar.gif
 import { Link } from 'react-router-dom';
 import Button from '../../Shared/Button';
 import PaymentModal from '../PaymentModal/PaymentModal';
+import useTitle from '../../../hooks/useTitle';
 
 const MyAppointment = () => {
+    useTitle('My Appointment');
     const { user } = useContext(AuthContext);
     const [payment, setPayment] = useState(null);
 

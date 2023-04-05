@@ -4,8 +4,10 @@ import { toast } from 'react-toastify';
 import ConfirmationModal from '../../Shared/ConfirmationModal';
 import Loading from '../../Shared/Loading';
 import User from './User';
+import useTitle from '../../../hooks/useTitle';
 
 const AllUsers = () => {
+    useTitle('All Users');
     const [deletingUser, setDeletingUser] = useState(null);
 
     const { data: users, isLoading, refetch } = useQuery({

@@ -12,6 +12,7 @@ import SignUp from "../Pages/Login/SignUp/SignUp";
 import DisplayError from "../Pages/Shared/DisplayError";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import Reviews from "../Pages/Reviews/Reviews";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Appointment></Appointment>
                 </PrivateRoute>
+            },
+            {
+                path: 'reviews',
+                element: <Reviews></Reviews>
             },
             {
                 path: 'login',

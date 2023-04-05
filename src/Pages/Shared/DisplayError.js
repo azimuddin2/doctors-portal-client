@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
-import { useNavigate, useRouteError } from 'react-router-dom';
+import { Link, isRouteErrorResponse, useNavigate, useRouteError } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import errorImg from '../../assets/images/error.gif';
+import error404 from '../../assets/images/404-error.gif';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
+import { FaHome } from 'react-icons/fa';
 
 const DisplayError = () => {
+    useTitle('Error');
     const error = useRouteError();
     const { logOut } = useContext(AuthContext);
     const navigate = useNavigate()
@@ -18,6 +22,20 @@ const DisplayError = () => {
                 toast.error(error.message);
             })
     };
+
+    if (isRouteErrorResponse(error)) {
+        if (error.status === 404) {
+            return <div className='text-center'>
+                <img src={error404} alt="" className='mx-auto' />
+                <Link to='/'>
+                    <button style={{backgroundColor: '#FF725E'}} className='btn border-none text-white'>
+                        <FaHome className='text-xl mr-1'></FaHome>
+                        <span className='mt-1'>Back to Home</span>
+                    </button>
+                </Link>
+            </div>;
+        }
+    }
 
     return (
         <div className='text-center'>

@@ -5,8 +5,10 @@ import { toast } from 'react-toastify';
 import Loading from '../../Shared/Loading';
 import { BiImageAdd } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 
 const AddDoctor = () => {
+    useTitle('Add Doctors');
     const [accepted, setAccepted] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate();
