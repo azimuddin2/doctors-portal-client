@@ -23,7 +23,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
             patientPhone: event.target.phone.value
         };
 
-        fetch('http://localhost:5000/booking', {
+        fetch('https://doctors-portal-server-ashen-eight.vercel.app/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

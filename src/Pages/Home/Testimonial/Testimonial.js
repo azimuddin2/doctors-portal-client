@@ -20,7 +20,7 @@ const Testimonial = () => {
                         <h2 className='text-3xl'>What Our Patients Says</h2>
                     </div>
                 </Zoom>
-                <Zoom right>
+                <Zoom top>
                     <div>
                         <img src={quote} className='w-24 lg:w-40' alt="quote" />
                     </div>

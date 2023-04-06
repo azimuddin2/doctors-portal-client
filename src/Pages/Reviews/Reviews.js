@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zoom } from 'react-reveal';
+import { Fade, Zoom } from 'react-reveal';
 import quote from '../../assets/icons/quote.svg';
 import useReview from '../../hooks/useReview';
 import Review from '../../components/Review/Review';
@@ -18,20 +18,22 @@ const Reviews = () => {
                         <h2 className='text-3xl'>What Our Patients Says</h2>
                     </div>
                 </Zoom>
-                <Zoom right>
+                <Zoom top>
                     <div>
                         <img src={quote} className='w-24 lg:w-40' alt="quote" />
                     </div>
                 </Zoom>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                {
-                    reviews.map(review => <Review
-                        key={review._id}
-                        review={review}
-                    ></Review>)
-                }
-            </div>
+            <Fade bottom>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                    {
+                        reviews.map(review => <Review
+                            key={review._id}
+                            review={review}
+                        ></Review>)
+                    }
+                </div>
+            </Fade>
         </section>
     );
 };
