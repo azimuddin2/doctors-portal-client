@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import Loading from '../../Shared/Loading';
+import React, { useState } from 'react';
+import Loading from '../../../Shared/Loading';
 import Booking from './Booking';
 import appointmentCalendar from '../../../assets/images/appointment-calendar.gif';
 import { Link } from 'react-router-dom';
-import Button from '../../Shared/Button';
+import Button from '../../../Shared/Button';
 import PaymentModal from '../PaymentModal/PaymentModal';
-import useTitle from '../../../hooks/useTitle';
+import useTitle from '../../../../hooks/useTitle';
+import useAuth from '../../../../hooks/useAuth';
 
 const MyAppointment = () => {
     useTitle('My Appointment');
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     const [payment, setPayment] = useState(null);
 
     const url = `https://doctors-portal-server-ashen-eight.vercel.app/bookings?email=${user?.email}`;

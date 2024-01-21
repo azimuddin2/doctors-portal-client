@@ -1,13 +1,13 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useToken from '../../../hooks/useToken';
 import { FcGoogle } from 'react-icons/fc';
+import useAuth from '../../../hooks/useAuth';
 
 const SocialLogin = () => {
-    const { signInWithGoogle } = useContext(AuthContext);
+    const { signInWithGoogle } = useAuth();
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
 

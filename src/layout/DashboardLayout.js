@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 import Navbar from '../Pages/Shared/Navbar';
 import { FiUserPlus, FiUserMinus, FiUsers } from 'react-icons/fi';
 import { TbClipboardList } from 'react-icons/tb';
 import Sidebar from '../components/Sidebar/Sidebar';
+import useAuth from '../hooks/useAuth';
 
 const DashboardLayout = () => {
-    const { user } = useContext(AuthContext);
-    const [isAdmin] = useAdmin(user?.email)
+    const { user } = useAuth();
+    const [isAdmin] = useAdmin(user?.email);
 
     return (
         <div>

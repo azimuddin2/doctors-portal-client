@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 import Loading from '../Pages/Shared/Loading';
+import useAuth from '../hooks/useAuth';
 
 const AdminRoute = ({ children }) => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
     const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const location = useLocation();
 

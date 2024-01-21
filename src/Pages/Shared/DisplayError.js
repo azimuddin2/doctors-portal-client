@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, isRouteErrorResponse, useNavigate, useRouteError } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import errorImg from '../../assets/images/error.gif';
 import error404 from '../../assets/images/404-error.gif';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import { FaHome } from 'react-icons/fa';
+import useAuth from '../../hooks/useAuth';
 
 const DisplayError = () => {
     useTitle('Error');
     const error = useRouteError();
-    const { logOut } = useContext(AuthContext);
+    const { logOut } = useAuth();
     const navigate = useNavigate()
 
     const handleLogout = () => {

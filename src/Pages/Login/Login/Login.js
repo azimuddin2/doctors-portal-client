@@ -1,18 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
 import useToken from '../../../hooks/useToken';
-import {  Fade } from 'react-reveal';
+import { Fade } from 'react-reveal';
 import useTitle from '../../../hooks/useTitle';
+import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
     useTitle('Login');
-    const { signIn } = useContext(AuthContext);
+    const { signIn } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
