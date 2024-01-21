@@ -1,11 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
-import Navbar from '../Pages/Shared/Navbar';
 import { FiUserPlus, FiUserMinus, FiUsers } from 'react-icons/fi';
 import { TbClipboardList } from 'react-icons/tb';
 import Sidebar from '../components/Sidebar/Sidebar';
 import useAuth from '../hooks/useAuth';
+import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
     const { user } = useAuth();
