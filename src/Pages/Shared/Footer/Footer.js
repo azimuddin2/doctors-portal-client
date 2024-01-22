@@ -1,5 +1,5 @@
 import React from 'react';
-import footer from '../../assets/images/footer.png';
+import footer from '../../../assets/images/footer.png';
 import { Link } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';

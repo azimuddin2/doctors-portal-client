@@ -6,12 +6,12 @@ const CustomLink = ({ children, to, ...props }) => {
     let match = useMatch({ path: resolved.pathname, end: true });
 
     return (
-        <Link className='lg:mr-6'
+        <Link className='lg:mr-1 mb-1 lg:mb-0'
             style={{
-                color: match ? 'white' : '',
+                color: match ? 'white' : 'black',
                 backgroundColor: match ? '#3A4256' : '',
-                padding: match ? '8px 16px' : '0px',
-                borderRadius: match ? '5px' : '0px',
+                borderRadius: '5px',
+                padding: '8px 16px',
             }}
             to={to}
             {...props}
