@@ -1,9 +1,9 @@
 import React from 'react';
 import doctor from '../../../assets/images/doctor-small.png';
 import bgAppointment from '../../../assets/images/appointment.png';
-import Button from '../../Shared/Button';
 import { Link } from 'react-router-dom';
 import {  Zoom } from 'react-reveal';
+import Button from '../../Shared/Button/Button';
 
 const MakeAppointment = () => {
     return (

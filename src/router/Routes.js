@@ -5,16 +5,16 @@ import Appointment from "../Pages/Appointment/Appointment/Appointment";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import SignUp from "../Pages/Login/SignUp/SignUp";
-import DisplayError from "../Pages/Shared/DisplayError";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import Reviews from "../Pages/Reviews/Reviews";
+import DisplayError from "../Pages/Shared/DisplayError/DisplayError";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
-        // errorElement: <DisplayError></DisplayError>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',

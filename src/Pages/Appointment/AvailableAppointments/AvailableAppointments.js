@@ -2,8 +2,8 @@ import { format } from 'date-fns';
 import React, { useState } from 'react';
 import BookingModal from '../BookingModal/BookingModal';
 import Service from './Service';
-import Loading from '../../Shared/Loading';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../../Shared/Loading/Loading';
 
 const AvailableAppointments = ({ date }) => {
     const [treatment, setTreatment] = useState(null);

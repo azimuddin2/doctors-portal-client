@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import treatment from '../../../assets/images/treatment.png';
-import Button from '../../Shared/Button';
 import { Fade, Zoom } from 'react-reveal';
+import Button from '../../Shared/Button/Button';
 
 const Treatment = () => {
     return (

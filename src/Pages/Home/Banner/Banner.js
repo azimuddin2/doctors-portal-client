@@ -1,9 +1,9 @@
 import React from 'react';
 import chair from '../../../assets/images/chair.png';
-import Button from '../../Shared/Button';
 import backgroundImg from '../../../assets/images/bg.png';
 import { Link } from 'react-router-dom';
 import { Fade } from 'react-reveal';
+import Button from '../../Shared/Button/Button';
 
 const Banner = () => {
     return (

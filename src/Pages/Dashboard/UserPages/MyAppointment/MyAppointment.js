@@ -4,10 +4,10 @@ import Loading from '../../../Shared/Loading';
 import Booking from './Booking';
 import appointmentCalendar from '../../../assets/images/appointment-calendar.gif';
 import { Link } from 'react-router-dom';
-import Button from '../../../Shared/Button';
 import PaymentModal from '../PaymentModal/PaymentModal';
 import useTitle from '../../../../hooks/useTitle';
 import useAuth from '../../../../hooks/useAuth';
+import Button from '../../../Shared/Button/Button';
 
 const MyAppointment = () => {
     useTitle('My Appointment');
