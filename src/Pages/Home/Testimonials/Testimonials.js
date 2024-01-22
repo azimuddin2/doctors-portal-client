@@ -4,25 +4,25 @@ import { Pagination, A11y, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import quote from '../../../assets/icons/quote.svg';
-import Review from '../../../components/Review/Review';
 import useReview from '../../../hooks/useReview';
-import {  Zoom } from 'react-reveal';
+import { Zoom } from 'react-reveal';
+import Testimonial from './Testimonial';
 
-const Testimonial = () => {
+const Testimonials = () => {
     const [reviews] = useReview([]);
 
     return (
-        <section className='px-8 my-12'>
+        <section className='px-5 lg:px-8 my-12'>
             <div className='flex justify-between items-center mb-12'>
                 <Zoom left>
                     <div>
-                        <h4 className='text-lg text-secondary font-bold'>Testimonial</h4>
-                        <h2 className='text-3xl'>What Our Patients Says</h2>
+                        <h4 className='text-lg text-secondary font-semibold uppercase'>Testimonial</h4>
+                        <h2 className='text-2xl lg:text-3xl text-accent'>What Our Patients Says</h2>
                     </div>
                 </Zoom>
                 <Zoom top>
                     <div>
-                        <img src={quote} className='w-24 lg:w-40' alt="quote" />
+                        <img src={quote} className='w-20 lg:w-36' alt="quote" />
                     </div>
                 </Zoom>
             </div>
@@ -45,14 +45,14 @@ const Testimonial = () => {
                             width: 768,
                             slidesPerView: 2,
                         },
-                        1200: {
-                            width: 1200,
+                        1280: {
+                            width: 1280,
                             slidesPerView: 3,
 
                         },
                     }}
                     modules={[Pagination, A11y, Autoplay]}
-                    spaceBetween={24}
+                    spaceBetween={20}
                     autoplay={{
                         delay: 2500,
                         disableOnInteraction: false,
@@ -61,8 +61,8 @@ const Testimonial = () => {
                 >
                     <div>
                         {
-                            reviews.map(review => <SwiperSlide key={review._id}>
-                                <Review review={review}></Review>
+                            reviews.map(testimonial => <SwiperSlide key={testimonial._id}>
+                                <Testimonial testimonial={testimonial}></Testimonial>
                             </SwiperSlide>)
                         }
                     </div>
@@ -72,4 +72,4 @@ const Testimonial = () => {
     );
 };
 
-export default Testimonial;
+export default Testimonials;

@@ -1,12 +1,12 @@
 import React from 'react';
-import Banner from './Banner/Banner';
-import Contact from './Contact/Contact';
-import Information from './Information/Information';
-import MakeAppointment from './MakeAppointment/MakeAppointment';
-import Services from './Services/Services';
-import Testimonial from './Testimonial/Testimonial';
-import Treatment from './Treatment/Treatment';
 import useTitle from '../../hooks/useTitle';
+import Banner from './Banner/Banner';
+import Information from './Information/Information';
+import Services from './Services/Services';
+import Treatment from './Treatment/Treatment';
+import MakeAppointment from './MakeAppointment/MakeAppointment';
+import Testimonials from './Testimonials/Testimonials';
+import Contact from './Contact/Contact';
 
 const Home = () => {
     useTitle('Home');
@@ -17,7 +17,7 @@ const Home = () => {
             <Services></Services>
             <Treatment></Treatment>
             <MakeAppointment></MakeAppointment>
-            <Testimonial></Testimonial>
+            <Testimonials></Testimonials>
             <Contact></Contact>
         </div>
     );

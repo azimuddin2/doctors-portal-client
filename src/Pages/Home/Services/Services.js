@@ -25,17 +25,17 @@ const Services = () => {
             name: 'Teeth Whitening',
             description: 'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the'
         },
-    ]
+    ];
 
     return (
-        <section className='mt-16 lg:mt-20'>
+        <section className='my-16 lg:my-20 px-5 lg:px-8'>
             <Zoom top>
                 <div className='text-center mb-12'>
-                    <h2 className='text-secondary font-bold mb-2 text-lg'>Our Services</h2>
-                    <h1 className='text-4xl text-accent'>Services We Provide</h1>
+                    <h2 className='text-secondary font-semibold mb-1 text-lg uppercase'>Our Services</h2>
+                    <h1 className='text-3xl lg:text-4xl text-accent'>Services We Provide</h1>
                 </div>
             </Zoom>
-            <div className='px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     services.map(service => <Service
                         key={service._id}

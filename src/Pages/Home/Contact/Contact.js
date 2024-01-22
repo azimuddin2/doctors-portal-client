@@ -31,8 +31,8 @@ const Contact = () => {
                     backgroundSize: 'cover'
                 }}
             >
-                <div className='text-center py-14 px-8 w-full sm:w-auto'>
-                    <h4 className='font-bold text-secondary text-lg'>Contact Us</h4>
+                <div className='text-center py-14 px-5 lg:px-8 w-full sm:w-auto'>
+                    <h4 className='font-semibold text-secondary text-lg uppercase'>Contact Us</h4>
                     <h1 className='text-3xl text-white mb-10 font-normal'>Stay connected with us</h1>
                     <form onSubmit={handleSubmit} className='grid'>
                         <input

@@ -27,17 +27,19 @@ const Information = () => {
             description: '+000 1883 061967',
             bgColor: 'bg-gradient-to-r from-secondary to-primary'
         },
-    ]
+    ];
 
     return (
-        <div className='my-6 lg:my-0 px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-            {
-                information.map(singleInfo => <InfoCard
-                    key={singleInfo.id}
-                    singleInfo={singleInfo}
-                ></InfoCard>)
-            }
-        </div>
+        <section className='px-5 lg:px-8 my-5 lg:my-0'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                {
+                    information.map(singleInfo => <InfoCard
+                        key={singleInfo.id}
+                        singleInfo={singleInfo}
+                    ></InfoCard>)
+                }
+            </div>
+        </section>
     );
 };
 
