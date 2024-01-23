@@ -1,0 +1,43 @@
+.responsive-navbar {
+    --border-size: 0.2rem;
+    border: var(--border-size) solid transparent;
+
+    /* Paint an image in the border */
+    border-image: conic-gradient(from var(--angle),
+            #0FCFEC 0deg 90deg,
+            #3A4256 0deg 90deg,
+            #19D3AE 270deg 360deg) 1 stretch;
+    background-color: #fff;
+    z-index: 2;
+}
+
+/* Animate when Houdini is available */
+@supports (background: paint(houdini)) {
+    @property --opacity {
+        syntax: "<number>";
+        initial-value: 0.5;
+        inherits: false;
+    }
+
+    @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    @keyframes opacityChange {
+        to {
+            --opacity: 1;
+        }
+    }
+
+    @keyframes rotate {
+        to {
+            --angle: 360deg;
+        }
+    }
+
+    .responsive-navbar {
+        animation: rotate 3s linear infinite, opacityChange 3s infinite alternate;
+    }
+}

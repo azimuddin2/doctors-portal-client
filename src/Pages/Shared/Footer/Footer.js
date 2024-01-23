@@ -12,7 +12,7 @@ const Footer = () => {
             width: '100%',
             backgroundSize: 'cover'
         }}>
-            <footer className="footer px-8 lg:px-20 py-20 text-base-content">
+            <footer className="footer px-5 lg:px-8 py-20 text-base-content">
                 <div>
                     <span className="footer-title">Services</span>
                     <Link to='/' className="link link-hover">Emergency Checkup</Link>
@@ -38,7 +38,7 @@ const Footer = () => {
                 </div>
             </footer>
             <div className="text-center py-8">
-                <p><span>Copyright © 2023 Doctors Portal</span></p>
+                <p><span>Copyright © 2024 Doctors Portal</span></p>
             </div>
             <ScrollToTop
                 smooth

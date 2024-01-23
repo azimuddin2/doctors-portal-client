@@ -9,6 +9,7 @@ import { LuCalendarClock, LuLayoutDashboard } from "react-icons/lu";
 import { TbMessageStar } from "react-icons/tb";
 import { BsInfoSquare } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
+import './Navbar.css';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -85,7 +86,7 @@ const Navbar = () => {
                     </label>
                     <ul
                         tabIndex="0"
-                        className="menu menu-compact dropdown-content mt-3 p-4 shadow bg-base-100 rounded-box w-64 right-6 font-medium"
+                        className="responsive-navbar menu menu-compact dropdown-content mt-3 p-4 shadow bg-base-100 w-64 right-6 font-medium"
                     >
                         {navOptions}
                     </ul>

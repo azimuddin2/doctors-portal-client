@@ -13,7 +13,7 @@ const Testimonials = () => {
 
     return (
         <section className='px-5 lg:px-8 my-12'>
-            <div className='flex justify-between items-center mb-12'>
+            <div className='flex justify-between items-center mb-8 lg:mb-12'>
                 <Zoom left>
                     <div>
                         <h4 className='text-lg text-secondary font-semibold uppercase'>Testimonial</h4>
