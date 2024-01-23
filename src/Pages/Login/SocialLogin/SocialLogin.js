@@ -15,10 +15,6 @@ const SocialLogin = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-    if (token) {
-        navigate(from, { replace: true });
-    }
-
     const provider = new GoogleAuthProvider();
 
     const handleSignInWithGoogle = () => {
@@ -26,12 +22,35 @@ const SocialLogin = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                setLoginUserEmail(user.email)
+                setLoginUserEmail(user.email);
+                saveUserDataBase(user.displayName, user.email);
             })
             .catch(error => {
                 toast.error(error.message);
             })
     };
+
+    const saveUserDataBase = (name, email) => {
+        const userInfo = {
+            name,
+            email
+        };
+        fetch('https://doctors-portal-server-ashen-eight.vercel.app/user', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(result => {
+
+            })
+    };
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     return (
         <div>

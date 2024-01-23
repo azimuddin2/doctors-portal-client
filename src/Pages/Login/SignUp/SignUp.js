@@ -12,7 +12,7 @@ import useAuth from '../../../hooks/useAuth';
 import { MdErrorOutline } from 'react-icons/md';
 
 const SignUp = () => {
-    useTitle('Signup');
+    useTitle('SignUp');
     const { createUser, updateUserProfile } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);
@@ -23,19 +23,15 @@ const SignUp = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-    if (token) {
-        navigate(from, { replace: true });
-    }
-
     const onSubmit = (data) => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('User Created Successfully.')
                 handleUpdateUserProfile(data.name);
                 reset();
                 saveUserDataBase(data.name, data.email);
+                toast.success('User Created Successfully.');
             })
             .catch(error => {
                 toast.error(error.message);
@@ -46,7 +42,6 @@ const SignUp = () => {
         const userInfo = {
             displayName: name
         };
-
         updateUserProfile(userInfo)
             .then(() => { })
             .catch(error => {
@@ -55,20 +50,26 @@ const SignUp = () => {
     };
 
     const saveUserDataBase = (name, email) => {
-        const user = { name, email };
-
+        const userInfo = {
+            name,
+            email
+        };
         fetch('https://doctors-portal-server-ashen-eight.vercel.app/user', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(userInfo)
         })
             .then(res => res.json())
             .then(data => {
                 setCreatedUserEmail(email);
             })
     };
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     return (
         <div className="flex justify-center items-center my-12 px-5">
