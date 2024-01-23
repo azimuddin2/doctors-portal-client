@@ -16,14 +16,14 @@ const Information = () => {
         {
             id: 2,
             img: marker,
-            title: 'Visit our location',
+            title: 'Visit Our Location',
             description: 'Brooklyn, NY 10036, United States',
             bgColor: 'bg-accent'
         },
         {
             id: 3,
             img: phone,
-            title: 'Contact us now',
+            title: 'Contact Us Now',
             description: '+000 1883 061967',
             bgColor: 'bg-gradient-to-r from-secondary to-primary'
         },

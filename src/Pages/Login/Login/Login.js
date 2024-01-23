@@ -9,6 +9,7 @@ import useToken from '../../../hooks/useToken';
 import { Fade } from 'react-reveal';
 import useTitle from '../../../hooks/useTitle';
 import useAuth from '../../../hooks/useAuth';
+import { MdErrorOutline } from 'react-icons/md';
 
 const Login = () => {
     useTitle('Login');
@@ -41,14 +42,13 @@ const Login = () => {
     };
 
     return (
-        <div className="flex justify-center items-center my-12 px-3">
+        <div className="flex justify-center items-center my-12 px-5">
             <Fade bottom>
-                <div className="card w-96 shadow-lg">
-                    <div className="card-body">
+                <div className="card w-full lg:w-2/6 shadow-lg">
+                    <div className="card-body px-6 lg:px-8">
                         <h2 className="text-center text-2xl">Login</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
-
-                            <div className="form-control w-full max-w-xs">
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
@@ -60,19 +60,18 @@ const Login = () => {
                                         },
                                         pattern: {
                                             value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                                            message: 'Provide a valid Email',
+                                            message: 'Provide a valid email',
                                         }
                                     })}
                                     type="email"
-                                    className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
+                                    className="input input-bordered w-full focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
                                 />
                                 <label className="label">
-                                    {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                                    {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                                    {errors.email?.type === 'required' && <span className="label-text-alt text-red-500 flex items-center text-sm"><MdErrorOutline className='text-lg' />{errors.email.message}</span>}
+                                    {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500 flex items-center text-sm"><MdErrorOutline className='text-lg' />{errors.email.message}</span>}
                                 </label>
                             </div>
-
-                            <div className="form-control w-full max-w-xs">
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
@@ -88,7 +87,7 @@ const Login = () => {
                                         }
                                     })}
                                     type={showPassword ? "text" : "password"}
-                                    className="input input-bordered w-full max-w-xs focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
+                                    className="input input-bordered w-full focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary"
                                 />
                                 <p className='m-12'
                                     onClick={() => setShowPassword(!showPassword)}
@@ -102,14 +101,14 @@ const Login = () => {
                                     }
                                 </p>
                                 <label className="label">
-                                    {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
-                                    {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                    {errors.password?.type === 'required' && <span className="label-text-alt text-red-500 flex items-center text-sm"><MdErrorOutline className='text-lg' />{errors.password.message}</span>}
+                                    {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500 flex items-center text-sm"><MdErrorOutline className='text-lg' />{errors.password.message}</span>}
                                 </label>
                             </div>
-                            <input className="btn btn-accent text-white w-full max-w-xs mt-2" type="submit" value='Login' />
+                            <input className="btn btn-accent text-white w-full mt-2" type="submit" value='Login' />
                         </form>
-                        <p className='text-center'><small>New to Doctors Portal? <Link className='text-secondary' to='/signup'>Create new account</Link></small></p>
-                        <div className="divider">OR</div>
+                        <p className='text-center lg:text-lg'><small>New to Doctors Portal? <Link className='text-secondary link' to='/signup'>Create new account</Link></small></p>
+                        <div className="divider">Or</div>
                         <SocialLogin></SocialLogin>
                     </div>
                 </div>

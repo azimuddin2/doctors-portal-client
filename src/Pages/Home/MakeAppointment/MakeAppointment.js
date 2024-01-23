@@ -22,7 +22,7 @@ const MakeAppointment = () => {
             <Zoom right>
                 <div className='flex-1 py-10'>
                     <h3 className='text-secondary font-semibold uppercase mb-2 text-lg'>Appointment</h3>
-                    <h1 className='text-white font-semibold text-3xl lg:text-4xl mb-4'>Make an appointment Today</h1>
+                    <h1 className='text-white font-semibold text-3xl lg:text-4xl mb-4'>Make an appointment today</h1>
                     <p className='text-white font-normal text-base mb-6'>You should make an appointment by calling or by email. Do not try to make appointments by text, unless you are simply asking a good friend if they would like to have lunch.When making an appointment you should give the person your name and the reason for wanting an appointment.</p>
                     <Link to='/appointment'>
                         <Button>Get Started</Button>
