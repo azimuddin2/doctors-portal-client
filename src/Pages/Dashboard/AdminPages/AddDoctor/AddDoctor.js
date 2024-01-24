@@ -17,7 +17,7 @@ const AddDoctor = () => {
     const { data: appointments, isLoading } = useQuery({
         queryKey: ['appointments'],
         queryFn: async () => {
-            const res = await fetch('https://doctors-portal-server-ashen-eight.vercel.app/appointments');
+            const res = await fetch('http://localhost:5000/appointments');
             const data = await res.json();
             return data;
         }
@@ -43,7 +43,7 @@ const AddDoctor = () => {
                     }
 
                     // save doctor information to the database
-                    fetch('https://doctors-portal-server-ashen-eight.vercel.app/doctor', {
+                    fetch('http://localhost:5000/doctor', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

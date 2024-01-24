@@ -54,7 +54,7 @@ const SignUp = () => {
             name,
             email
         };
-        fetch('https://doctors-portal-server-ashen-eight.vercel.app/user', {
+        fetch('http://localhost:5000/user', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -62,7 +62,8 @@ const SignUp = () => {
             body: JSON.stringify(userInfo)
         })
             .then(res => res.json())
-            .then(data => {
+            .then(result => {
+                console.log(result);
                 setCreatedUserEmail(email);
             })
     };

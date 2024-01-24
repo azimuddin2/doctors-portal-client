@@ -14,7 +14,7 @@ const MyAppointment = () => {
     const { user } = useAuth();
     const [payment, setPayment] = useState(null);
 
-    const url = `https://doctors-portal-server-ashen-eight.vercel.app/bookings?email=${user?.email}`;
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
     const { data: bookings, isLoading, refetch } = useQuery({
         queryKey: ['bookings', user?.email],
