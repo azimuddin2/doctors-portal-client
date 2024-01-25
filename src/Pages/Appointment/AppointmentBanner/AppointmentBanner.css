@@ -1,3 +1,9 @@
+.rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
+    color: var(--rdp-selected-color);
+    opacity: 1;
+    background-color: #3A4256;
+}
+
 @media only screen and (max-width: 576px) {
     .background-image{
         background-image: none !important;

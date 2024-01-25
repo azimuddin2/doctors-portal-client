@@ -25,7 +25,7 @@ const DisplayError = () => {
 
     if (isRouteErrorResponse(error)) {
         if (error.status === 404) {
-            return <div className='text-center'>
+            return <div className='text-center my-20'>
                 <img src={error404} alt="" className='mx-auto' />
                 <Link to='/'>
                     <button style={{backgroundColor: '#FF725E'}} className='btn border-none text-white'>
