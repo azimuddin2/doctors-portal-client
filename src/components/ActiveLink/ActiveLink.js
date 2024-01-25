@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
-const Sidebar = ({ children, to, ...props }) => {
+const ActiveLink = ({ children, to, ...props }) => {
     let resolved = useResolvedPath(to);
     let match = useMatch({ path: resolved.pathname, end: true });
 
     return (
         <Link
             style={{
-                color: match ? '#19D3AE' : '',
-                fontWeight: match ? '500' : '',
-                borderLeft: match ? '3px solid #19D3AE' : '',
-                borderRadius: '0px',
+                background: match ? '#F1F5F9' : '',
+                fontWeight: match ? '600' : '500',
+                borderLeft: match ? '4px solid #19D3AE' : '',
+                borderRadius: '4px',
+                color: '#3A4256',
+                marginBottom: '2px'
             }}
             to={to}
             {...props}
@@ -21,4 +23,4 @@ const Sidebar = ({ children, to, ...props }) => {
     );
 };
 
-export default Sidebar;
+export default ActiveLink;

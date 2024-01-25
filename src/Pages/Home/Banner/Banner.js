@@ -17,7 +17,7 @@ const Banner = () => {
             className='background-image'
         >
             <div className="hero min-h-full px-5 lg:px-8 py-5 lg:py-20">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="hero-content p-0 flex-col lg:flex-row-reverse">
                     <Fade bottom>
                         <div>
                             <img src={chairImg} className="w-100 rounded-lg" alt='Chair' />

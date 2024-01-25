@@ -70,8 +70,8 @@ const Navbar = () => {
         <div className="navbar bg-base-100 px-5 lg:px-8">
             <div className="navbar-start">
                 <Link to='/' className='flex justify-items-center items-center'>
-                    <img className='w-7 md:w-9' src={logo} alt="" />
-                    <p className='font-bold lg:text-xl ml-1 text-accent font-family'>Doctors Portal</p>
+                    {/* <img className='w-7 md:w-9' src={logo} alt="" /> */}
+                    <p className='font-bold text-xl ml-1 text-accent font-family'>Doctors Portal</p>
                 </Link>
             </div>
             <div className='navbar-end hidden lg:flex items-center'>
