@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import Loading from '../../../Shared/Loading';
 import Booking from './Booking';
-import appointmentCalendar from '../../../assets/images/appointment-calendar.gif';
+import appointmentCalendar from '../../../../assets/images/appointment-calendar.gif';
 import { Link } from 'react-router-dom';
 import PaymentModal from '../PaymentModal/PaymentModal';
-import useTitle from '../../../../hooks/useTitle';
 import useAuth from '../../../../hooks/useAuth';
 import Button from '../../../Shared/Button/Button';
+import Loading from '../../../Shared/Loading/Loading';
+import useTitle from '../../../../hooks/useTitle';
 
 const MyAppointment = () => {
     useTitle('My Appointment');

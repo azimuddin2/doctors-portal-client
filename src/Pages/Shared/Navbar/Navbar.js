@@ -55,7 +55,7 @@ const Navbar = () => {
         <li>
             {
                 user?.uid ?
-                    <button onClick={handleLogout}>
+                    <button onClick={handleLogout} className='lg:ml-4'>
                         <FiLogIn className='text-lg lg:hidden' />Logout
                     </button>
                     :

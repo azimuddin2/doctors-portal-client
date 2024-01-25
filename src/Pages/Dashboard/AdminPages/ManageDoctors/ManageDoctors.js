@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import ConfirmationModal from '../../Shared/ConfirmationModal';
-import Loading from '../../Shared/Loading';
+import useTitle from '../../../../hooks/useTitle';
+import Loading from '../../../Shared/Loading/Loading';
 import DoctorRow from './DoctorRow';
-import useTitle from '../../../hooks/useTitle';
+import ConfirmationModal from '../../../Shared/ConfirmationModal/ConfirmationModal';
 
 const ManageDoctors = () => {
     useTitle('Manage Doctor');
@@ -69,7 +69,7 @@ const ManageDoctors = () => {
                     </thead>
                     <tbody>
                         {
-                            doctors.map((doctor, index) => <DoctorRow
+                            doctors?.map((doctor, index) => <DoctorRow
                                 key={doctor._id}
                                 index={index}
                                 doctor={doctor}

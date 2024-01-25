@@ -9,6 +9,10 @@ import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import Reviews from "../Pages/Reviews/Reviews";
 import DisplayError from "../Pages/Shared/DisplayError/DisplayError";
+import MyAppointment from "../Pages/Dashboard/UserPages/MyAppointment/MyAppointment";
+import AllUsers from "../Pages/Dashboard/AdminPages/AllUsers/AllUsers";
+import AddDoctor from "../Pages/Dashboard/AdminPages/AddDoctor/AddDoctor";
+import ManageDoctors from "../Pages/Dashboard/AdminPages/ManageDoctors/ManageDoctors";
 
 const router = createBrowserRouter([
     {
@@ -41,35 +45,35 @@ const router = createBrowserRouter([
         ]
     },
 
-    // {
-    //     path: '/dashboard',
-    //     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    //     errorElement: <DisplayError></DisplayError>,
-    //     children: [
-    //         {
-    //             path: '/dashboard',
-    //             element: <MyAppointment></MyAppointment>
-    //         },
-    //         {
-    //             path: '/dashboard/users',
-    //             element: <AdminRoute>
-    //                 <AllUsers></AllUsers>
-    //             </AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/add-doctor',
-    //             element: <AdminRoute>
-    //                 <AddDoctor></AddDoctor>
-    //             </AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/manage-doctors',
-    //             element: <AdminRoute>
-    //                 <ManageDoctors></ManageDoctors>
-    //             </AdminRoute>
-    //         }
-    //     ]
-    // },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <DisplayError></DisplayError>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyAppointment></MyAppointment>
+            },
+            {
+                path: '/dashboard/users',
+                element: <AdminRoute>
+                    <AllUsers></AllUsers>
+                </AdminRoute>
+            },
+            {
+                path: '/dashboard/add-doctor',
+                element: <AdminRoute>
+                    <AddDoctor></AddDoctor>
+                </AdminRoute>
+            },
+            {
+                path: '/dashboard/manage-doctors',
+                element: <AdminRoute>
+                    <ManageDoctors></ManageDoctors>
+                </AdminRoute>
+            }
+        ]
+    },
 ]);
 
 export default router;

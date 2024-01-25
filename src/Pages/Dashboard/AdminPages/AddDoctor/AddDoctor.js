@@ -2,10 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import Loading from '../../../Shared/Loading';
 import { BiImageAdd } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import useTitle from '../../../../hooks/useTitle';
+import Loading from '../../../Shared/Loading/Loading';
 
 const AddDoctor = () => {
     useTitle('Add Doctors');
