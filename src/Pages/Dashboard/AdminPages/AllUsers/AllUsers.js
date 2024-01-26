@@ -6,9 +6,11 @@ import ConfirmationModal from '../../../Shared/ConfirmationModal/ConfirmationMod
 import useTitle from '../../../../hooks/useTitle';
 import User from './User';
 import ErrorMessage from '../../../Shared/ErrorMessage/ErrorMessage';
+import useAuth from '../../../../hooks/useAuth';
 
 const AllUsers = () => {
     useTitle('All Users');
+    const { logOut } = useAuth();
     const [deletingUser, setDeletingUser] = useState(null);
 
     const { data: users = [], isLoading, error, refetch } = useQuery({
@@ -23,7 +25,7 @@ const AllUsers = () => {
             return data;
         }
     })
-    console.log(users);
+
     const handleDeleteUser = (user) => {
         fetch(`http://localhost:5000/user/${user._id}`, {
             method: 'DELETE',
@@ -31,7 +33,13 @@ const AllUsers = () => {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    logOut();
+                    localStorage.removeItem('accessToken');
+                }
+                res.json()
+            })
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();
@@ -53,8 +61,8 @@ const AllUsers = () => {
     }
 
     return (
-        <div className='h-full p-4 lg:p-10' style={{ backgroundColor: '#F1F5F9' }}>
-            <h2 className='text-2xl font-medium mb-5'>All Users</h2>
+        <div className='min-h-screen p-5 lg:p-12' style={{ backgroundColor: '#F1F5F9' }}>
+            <h2 className='text-2xl font-medium mb-4'>All Users: {users?.length}</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -68,7 +76,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <User
+                            users?.map((user, index) => <User
                                 key={user._id}
                                 index={index}
                                 user={user}

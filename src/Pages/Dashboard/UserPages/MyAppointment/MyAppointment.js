@@ -52,7 +52,7 @@ const MyAppointment = () => {
             {
                 bookings?.length > 0 ?
                     <div className='min-h-screen p-5 lg:p-12' style={{ backgroundColor: '#F1F5F9' }}>
-                        <h2 className='text-2xl font-medium mb-5'>My Appointment</h2>
+                        <h2 className='text-2xl font-medium mb-4'>My Appointment</h2>
                         <div className="overflow-x-auto">
                             <table className="table w-full">
                                 <thead>

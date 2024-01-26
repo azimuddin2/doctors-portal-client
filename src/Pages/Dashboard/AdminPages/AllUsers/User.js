@@ -1,6 +1,7 @@
 import React from 'react';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { GrUserAdmin } from 'react-icons/gr';
+import { FaDeleteLeft } from "react-icons/fa6";
 import { toast } from 'react-toastify';
 
 const User = ({ user, index, refetch, setDeletingUser }) => {
@@ -30,11 +31,14 @@ const User = ({ user, index, refetch, setDeletingUser }) => {
             <td>
                 {
                     user?.role ?
-                        <GrUserAdmin className='text-2xl'></GrUserAdmin>
+                        <p className='flex items-center'>
+                            <GrUserAdmin className='text-2xl'></GrUserAdmin>
+                            <span className='font-semibold'>Admin</span>
+                        </p>
                         :
                         <button
                             onClick={() => handleMakeAdmin(_id)}
-                            className="btn btn-sm capitalize btn-primary text-white font-bold bg-gradient-to-r from-secondary to-primary"
+                            className="btn btn-sm capitalize btn-accent text-white font-semibold rounded"
                         >
                             Make Admin
                         </button>
@@ -44,8 +48,10 @@ const User = ({ user, index, refetch, setDeletingUser }) => {
                 <label
                     onClick={() => setDeletingUser(user)}
                     htmlFor="confirmation-modal"
+                    className='btn btn-sm capitalize border-none bg-red-500 text-white font-semibold rounded'
                 >
-                    <RiDeleteBin5Line className='text-2xl text-red-500 cursor-pointer'></RiDeleteBin5Line>
+                    <span className='hidden lg:block'>Remove User</span>
+                    <FaDeleteLeft className='text-xl ml-1' />
                 </label>
             </td>
         </tr>
