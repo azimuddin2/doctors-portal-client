@@ -88,7 +88,7 @@ const CheckoutForm = ({ payment, setPayment, refetch }) => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
-                        toast.success(`Congrats! Your payment completed. Your Transaction: ${paymentIntent.id}`);
+                        toast.success(`Congrats! Your payment completed. Your TransactionId: ${paymentIntent.id}`);
                         setPayment(null);
                         refetch();
                     }

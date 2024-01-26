@@ -13,10 +13,13 @@ const PaymentModal = ({ payment, setPayment, refetch }) => {
             <input type="checkbox" id="payment-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
-                    <h4 style={{ color: '#3CBCA2' }} className='text-lg font-semibold'>Hello, {patientName}</h4>
-                    <h3 className="font-bold text-xl mt-2">Please Pay for {treatment}</h3>
-                    <p className="py-2 text-base text-accent">Your Appointment: <span style={{ color: '#F0AA22' }}>{date}</span> at ${slot}</p>
-                    <h2 className='text-xl font-bold'>Please Pay: ${price}</h2>
+                    <label htmlFor="payment-modal" className="btn btn-sm btn-accent btn-circle absolute right-2 top-2 text-white">✕</label>
+                    <div>
+                        <h4 style={{ color: '#3CBCA2' }} className='text-lg font-semibold'>Hello, {patientName}</h4>
+                        <h3 className="font-bold text-xl mt-2">Please Pay for {treatment}</h3>
+                        <p className="py-2 text-base text-accent">Your Appointment: <span style={{ color: '#F0AA22' }}>{date}</span> at ${slot}</p>
+                        <h2 className='text-xl font-bold'>Please Pay: ${price}</h2>
+                    </div>
                     <div className="divider"></div>
                     <div>
                         <Elements stripe={stripePromise}>
