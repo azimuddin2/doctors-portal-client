@@ -5,7 +5,7 @@ const Booking = ({ booking, index, setPayment }) => {
 
     return (
         <tr>
-            <th>{index + 1}</th>
+            <td>{index + 1}</td>
             <td>{patientName}</td>
             <td>{treatment}</td>
             <td>{date}</td>
@@ -22,7 +22,7 @@ const Booking = ({ booking, index, setPayment }) => {
                         <label
                             onClick={() => setPayment(booking)}
                             htmlFor="payment-modal"
-                            className="btn btn-sm capitalize btn-primary text-white font-medium bg-gradient-to-r from-secondary to-primary"
+                            className="btn btn-sm rounded capitalize btn-primary text-white font-medium bg-gradient-to-r from-secondary to-primary"
                         >
                             Pay
                         </label>

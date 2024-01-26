@@ -8,15 +8,16 @@ import useAuth from '../../../../hooks/useAuth';
 import Button from '../../../Shared/Button/Button';
 import Loading from '../../../Shared/Loading/Loading';
 import useTitle from '../../../../hooks/useTitle';
+import ErrorMessage from '../../../Shared/ErrorMessage/ErrorMessage';
 
 const MyAppointment = () => {
     useTitle('My Appointment');
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
     const [payment, setPayment] = useState(null);
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
-    const { data: bookings, isLoading, refetch } = useQuery({
+    const { data: bookings = [], isLoading, error, refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             try {
@@ -25,6 +26,10 @@ const MyAppointment = () => {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
                 })
+                if (res.status === 401 || res.status === 403) {
+                    logOut();
+                    localStorage.removeItem('accessToken');
+                }
                 const data = await res.json();
                 return data;
             }
@@ -38,11 +43,15 @@ const MyAppointment = () => {
         return <Loading></Loading>
     }
 
+    if (error) {
+        return <ErrorMessage message={error.message}></ErrorMessage>
+    }
+
     return (
         <section>
             {
                 bookings?.length > 0 ?
-                    <div className='h-full p-4 lg:p-10' style={{ backgroundColor: '#F1F5F9' }}>
+                    <div className='min-h-screen p-5 lg:p-12' style={{ backgroundColor: '#F1F5F9' }}>
                         <h2 className='text-2xl font-medium mb-5'>My Appointment</h2>
                         <div className="overflow-x-auto">
                             <table className="table w-full">
@@ -71,10 +80,10 @@ const MyAppointment = () => {
                         </div>
                     </div>
                     :
-                    <div className='lg:py-16 text-center'>
-                        <img src={appointmentCalendar} alt="" className='w-full lg:w-1/2 rounded-lg mx-auto' />
+                    <div className='py-12 text-center'>
+                        <img src={appointmentCalendar} alt="Calendar" className='rounded-lg mx-auto' />
                         <Link to="/appointment">
-                            <Button>Appointment</Button>
+                            <Button>Please Appointment</Button>
                         </Link>
                     </div>
             }

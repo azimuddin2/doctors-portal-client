@@ -55,19 +55,19 @@ const router = createBrowserRouter([
                 element: <MyAppointment></MyAppointment>
             },
             {
-                path: '/dashboard/users',
+                path: 'users',
                 element: <AdminRoute>
                     <AllUsers></AllUsers>
                 </AdminRoute>
             },
             {
-                path: '/dashboard/add-doctor',
+                path: 'add-doctor',
                 element: <AdminRoute>
                     <AddDoctor></AddDoctor>
                 </AdminRoute>
             },
             {
-                path: '/dashboard/manage-doctors',
+                path: 'manage-doctors',
                 element: <AdminRoute>
                     <ManageDoctors></ManageDoctors>
                 </AdminRoute>

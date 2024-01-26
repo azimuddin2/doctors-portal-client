@@ -37,7 +37,7 @@ const DashboardLayout = () => {
                         </li>
                         <li>
                             <ActiveLink to="/dashboard/add-review">
-                            <MdRateReview className='text-xl'/>Add Review
+                                <MdRateReview className='text-xl' />Add Review
                             </ActiveLink>
                         </li>
                         {
@@ -59,7 +59,6 @@ const DashboardLayout = () => {
                                 </li>
                             </>
                         }
-
                         <li className='mt-auto'>
                             <ActiveLink to='/'>
                                 <FaHome className='text-xl' />Home
