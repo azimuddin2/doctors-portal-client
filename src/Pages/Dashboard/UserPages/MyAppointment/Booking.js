@@ -14,18 +14,22 @@ const Booking = ({ booking, index, setPayment }) => {
             <td>
                 {
                     paid ?
-                        <>
-                            <h4 className='text-green-500 font-medium'>Paid</h4>
-                            <p className='text-sm'>{transactionId}</p>
-                        </>
+                        (
+                            <>
+                                <h4 className='text-green-500 font-medium'>Paid</h4>
+                                <p className='text-sm'>{transactionId}</p>
+                            </>
+                        )
                         :
-                        <label
-                            onClick={() => setPayment(booking)}
-                            htmlFor="payment-modal"
-                            className="btn btn-sm rounded capitalize btn-primary text-white font-medium bg-gradient-to-r from-secondary to-primary"
-                        >
-                            Pay
-                        </label>
+                        (
+                            <label
+                                onClick={() => setPayment(booking)}
+                                htmlFor="payment-modal"
+                                className="btn btn-sm rounded capitalize btn-primary text-white font-medium bg-gradient-to-r from-secondary to-primary"
+                            >
+                                Pay
+                            </label>
+                        )
                 }
             </td>
         </tr>

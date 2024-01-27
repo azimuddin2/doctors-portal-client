@@ -1,5 +1,5 @@
 import React from 'react';
-import { RiErrorWarningLine } from 'react-icons/ri';
+import { PiWarningCircleThin } from "react-icons/pi";
 
 const ConfirmationModal = ({ modalData, closeModal, successModal }) => {
     return (
@@ -7,10 +7,12 @@ const ConfirmationModal = ({ modalData, closeModal, successModal }) => {
             <input type="checkbox" id="confirmation-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
-                    <RiErrorWarningLine style={{ color: '#f8bb86' }} className='text-8xl mx-auto'></RiErrorWarningLine>
-                    <h3 className="font-semibold text-4xl text-center">Are you sure?</h3>
-                    <p className="pt-4 text-center text-xl font-medium">{modalData.name}</p>
-                    <p className="pb-4 text-center text-lg">{modalData.email}</p>
+                    <div>
+                        <PiWarningCircleThin style={{ color: '#f8bb86' }} className='text-8xl mx-auto' />
+                        <h3 className="font-normal text-4xl text-center">Are you sure?</h3>
+                        <p className="pt-4 text-center text-xl font-medium text-accent">{modalData.name}</p>
+                        <p className="text-center text-lg text-accent">{modalData.email}</p>
+                    </div>
                     <div className="modal-action justify-center">
                         <label
                             onClick={closeModal}

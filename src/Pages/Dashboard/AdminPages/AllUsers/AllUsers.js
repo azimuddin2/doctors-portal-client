@@ -6,11 +6,9 @@ import ConfirmationModal from '../../../Shared/ConfirmationModal/ConfirmationMod
 import useTitle from '../../../../hooks/useTitle';
 import User from './User';
 import ErrorMessage from '../../../Shared/ErrorMessage/ErrorMessage';
-import useAuth from '../../../../hooks/useAuth';
 
 const AllUsers = () => {
     useTitle('All Users');
-    const { logOut } = useAuth();
     const [deletingUser, setDeletingUser] = useState(null);
 
     const { data: users = [], isLoading, error, refetch } = useQuery({
@@ -33,17 +31,11 @@ const AllUsers = () => {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    logOut();
-                    localStorage.removeItem('accessToken');
-                }
-                res.json()
-            })
+            .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();
-                    toast.success(`User ${user.email} deleted successfully`)
+                    toast.success(`User ${user.email} Deleted Successfully`);
                 }
             })
     };
@@ -70,7 +62,7 @@ const AllUsers = () => {
                             <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Job</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>

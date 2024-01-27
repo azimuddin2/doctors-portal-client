@@ -30,25 +30,29 @@ const User = ({ user, index, refetch, setDeletingUser }) => {
             <td>{email}</td>
             <td>
                 {
-                    user?.role ?
-                        <p className='flex items-center'>
-                            <GrUserAdmin className='text-2xl'></GrUserAdmin>
-                            <span className='font-semibold'>Admin</span>
-                        </p>
+                    user?.role === 'admin' ?
+                        (
+                            <p className='flex items-center'>
+                                <GrUserAdmin className='text-2xl text-accent' />
+                                <span className='font-semibold text-accent'>Admin</span>
+                            </p>
+                        )
                         :
-                        <button
-                            onClick={() => handleMakeAdmin(_id)}
-                            className="btn btn-sm capitalize btn-accent text-white font-semibold rounded"
-                        >
-                            Make Admin
-                        </button>
+                        (
+                            <button
+                                onClick={() => handleMakeAdmin(_id)}
+                                className="btn btn-sm capitalize btn-accent text-white font-semibold rounded"
+                            >
+                                Make Admin
+                            </button>
+                        )
                 }
             </td>
             <td>
                 <label
                     onClick={() => setDeletingUser(user)}
                     htmlFor="confirmation-modal"
-                    className='btn btn-sm capitalize border-none bg-red-500 text-white font-semibold rounded'
+                    className='btn btn-sm btn-error capitalize text-white font-semibold rounded'
                 >
                     <span className='hidden lg:block'>Remove User</span>
                     <FaDeleteLeft className='text-xl ml-1' />
