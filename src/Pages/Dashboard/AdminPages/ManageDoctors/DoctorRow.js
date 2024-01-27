@@ -1,5 +1,5 @@
 import React from 'react';
-import { RiDeleteBin5Line } from 'react-icons/ri';
+import { FaDeleteLeft } from 'react-icons/fa6';
 
 const DoctorRow = ({ doctor, index, setDeletingDoctor }) => {
     const { name, email, image, specialty } = doctor;
@@ -21,8 +21,10 @@ const DoctorRow = ({ doctor, index, setDeletingDoctor }) => {
                 <label
                     onClick={() => setDeletingDoctor(doctor)}
                     htmlFor="confirmation-modal"
+                    className='btn btn-sm btn-error capitalize text-white font-semibold rounded'
                 >
-                    <RiDeleteBin5Line className='text-2xl text-red-500 cursor-pointer'></RiDeleteBin5Line>
+                    <span className='hidden lg:block'>Delete</span>
+                    <FaDeleteLeft className='text-xl ml-1' />
                 </label>
             </td>
         </tr>

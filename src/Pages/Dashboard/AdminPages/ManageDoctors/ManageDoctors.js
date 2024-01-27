@@ -5,12 +5,13 @@ import useTitle from '../../../../hooks/useTitle';
 import Loading from '../../../Shared/Loading/Loading';
 import DoctorRow from './DoctorRow';
 import ConfirmationModal from '../../../Shared/ConfirmationModal/ConfirmationModal';
+import ErrorMessage from '../../../Shared/ErrorMessage/ErrorMessage';
 
 const ManageDoctors = () => {
-    useTitle('Manage Doctor');
+    useTitle('Manage Doctors');
     const [deletingDoctor, setDeletingDoctor] = useState(null);
 
-    const { data: doctors, isLoading, refetch } = useQuery({
+    const { data: doctors, isLoading, error, refetch } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
             try {
@@ -52,9 +53,13 @@ const ManageDoctors = () => {
         return <Loading></Loading>
     }
 
+    if (error) {
+        return <ErrorMessage message={error.message}></ErrorMessage>
+    }
+
     return (
-        <div className='h-full p-4 lg:p-10' style={{ backgroundColor: '#F1F5F9' }}>
-            <h2 className='text-2xl font-medium mb-5'>Manage Doctors</h2>
+        <div className='min-h-screen p-5 lg:p-12' style={{ backgroundColor: '#F1F5F9' }}>
+            <h2 className='text-2xl font-medium mb-4'>Manage Doctors</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
