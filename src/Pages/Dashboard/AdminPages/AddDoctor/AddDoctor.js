@@ -8,6 +8,7 @@ import useTitle from '../../../../hooks/useTitle';
 import Loading from '../../../Shared/Loading/Loading';
 import { MdErrorOutline } from 'react-icons/md';
 import ErrorMessage from '../../../Shared/ErrorMessage/ErrorMessage';
+import { CiEdit } from 'react-icons/ci';
 
 const AddDoctor = () => {
     useTitle('Add Doctor');
@@ -76,7 +77,10 @@ const AddDoctor = () => {
     return (
         <div className='min-h-screen py-8 p-5 lg:p-16' style={{ backgroundColor: '#F1F5F9' }}>
             <div className='lg:w-1/2 w-full'>
-                <h2 className='text-2xl font-semibold mb-5 text-center md:text-left'>Add a New Doctor</h2>
+                <div className='flex items-center justify-center mb-4'>
+                    <h2 className='text-2xl font-semibold text-accent'>Add a New Doctor</h2>
+                    <CiEdit className='text-3xl text-accent'></CiEdit>
+                </div>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="grid grid-cols-1 bg-white py-8 px-5 lg:p-10 rounded-xl shadow"
