@@ -16,7 +16,7 @@ const MakeAppointment = () => {
             className='flex justify-center items-center lg:mt-20 mt-10 px-5 lg:px-8'>
             <div className='flex-1 hidden lg:block'>
                 <Zoom top>
-                    <img className='mt-[-99px]' src={doctor} alt="Doctor" />
+                    <img className='mt-[-100px]' src={doctor} alt="Doctor" />
                 </Zoom>
             </div>
             <Zoom right>

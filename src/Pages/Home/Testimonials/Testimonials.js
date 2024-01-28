@@ -7,9 +7,19 @@ import quote from '../../../assets/icons/quote.svg';
 import useReview from '../../../hooks/useReview';
 import { Zoom } from 'react-reveal';
 import Testimonial from './Testimonial';
+import Loading from '../../Shared/Loading/Loading';
+import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 
 const Testimonials = () => {
-    const [reviews] = useReview([]);
+    const [reviews, isLoading, error] = useReview([]);
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+    if (error) {
+        return <ErrorMessage message={error.message}></ErrorMessage>
+    }
 
     return (
         <section className='px-5 lg:px-8 my-12'>
@@ -48,11 +58,10 @@ const Testimonials = () => {
                         1280: {
                             width: 1280,
                             slidesPerView: 3,
-
                         },
                     }}
                     modules={[Pagination, A11y, Autoplay]}
-                    spaceBetween={20}
+                    spaceBetween={12}
                     autoplay={{
                         delay: 2500,
                         disableOnInteraction: false,
@@ -61,7 +70,7 @@ const Testimonials = () => {
                 >
                     <div>
                         {
-                            reviews.map(testimonial => <SwiperSlide key={testimonial._id}>
+                            reviews.map(testimonial => <SwiperSlide key={testimonial._id} className='p-1'>
                                 <Testimonial testimonial={testimonial}></Testimonial>
                             </SwiperSlide>)
                         }

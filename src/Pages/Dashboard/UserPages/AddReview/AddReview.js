@@ -3,11 +3,14 @@ import { useForm } from 'react-hook-form';
 import { MdErrorOutline } from 'react-icons/md';
 import useAuth from '../../../../hooks/useAuth';
 import { CiEdit } from 'react-icons/ci';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const AddReview = () => {
     const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [countries, setCountries] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('https://restcountries.com/v3.1/all')
@@ -16,7 +19,29 @@ const AddReview = () => {
     }, [])
 
     const handleOnSubmit = (data) => {
-        console.log(data);
+        const { name, country, description } = data;
+        const reviewInfo = {
+            name,
+            location: country,
+            description,
+            img: user?.photoURL || null
+        };
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(reviewInfo)
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.insertedId) {
+                    reset();
+                    toast.success('Review added successfully');
+                    navigate('/reviews');
+                }
+            })
     };
 
     return (

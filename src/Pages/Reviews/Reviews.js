@@ -4,10 +4,20 @@ import quote from '../../assets/icons/quote.svg';
 import useReview from '../../hooks/useReview';
 import Review from './Review';
 import useTitle from '../../hooks/useTitle';
+import Loading from '../Shared/Loading/Loading';
+import ErrorMessage from '../Shared/ErrorMessage/ErrorMessage';
 
 const Reviews = () => {
     useTitle('Reviews');
-    const [reviews] = useReview([]);
+    const [reviews, isLoading, error] = useReview([]);
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+    if (error) {
+        return <ErrorMessage message={error.message}></ErrorMessage>
+    }
 
     return (
         <section className='px-5 lg:px-8 my-12'>
