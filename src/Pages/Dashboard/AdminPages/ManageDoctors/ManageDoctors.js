@@ -60,9 +60,9 @@ const ManageDoctors = () => {
     return (
         <div className='min-h-screen p-5 lg:p-12' style={{ backgroundColor: '#F1F5F9' }}>
             <h2 className='text-2xl font-medium mb-4'>Manage Doctors</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto rounded-lg">
                 <table className="table w-full">
-                    <thead>
+                    <thead className='bg-[#E6E6E6] uppercase text-accent'>
                         <tr>
                             <th></th>
                             <th>Avatar</th>
@@ -72,7 +72,7 @@ const ManageDoctors = () => {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='bg-white'>
                         {
                             doctors?.map((doctor, index) => <DoctorRow
                                 key={doctor._id}

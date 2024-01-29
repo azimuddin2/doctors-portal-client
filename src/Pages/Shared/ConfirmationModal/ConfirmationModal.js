@@ -17,7 +17,7 @@ const ConfirmationModal = ({ modalData, closeModal, successModal }) => {
                         <label
                             onClick={closeModal}
                             htmlFor="confirmation-modal"
-                            className="btn text-white"
+                            className="btn btn-accent text-white"
                         >
                             Cancel
                         </label>

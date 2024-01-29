@@ -6,7 +6,7 @@ const DoctorRow = ({ doctor, index, setDeletingDoctor }) => {
 
     return (
         <tr>
-            <th>{index + 1}</th>
+            <td>{index + 1}</td>
             <td>
                 <div className="avatar">
                     <div className="w-12 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">

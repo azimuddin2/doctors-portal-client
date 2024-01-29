@@ -24,7 +24,7 @@ const User = ({ user, index, refetch, setDeletingUser }) => {
 
     return (
         <tr>
-            <th>{index + 1}</th>
+            <td>{index + 1}</td>
             <td>{name}</td>
             <td>{email}</td>
             <td>
@@ -42,7 +42,7 @@ const User = ({ user, index, refetch, setDeletingUser }) => {
                                 onClick={() => handleMakeAdmin(_id)}
                                 className="btn btn-sm capitalize btn-accent text-white font-semibold rounded"
                             >
-                                Make Admin
+                                MakeAdmin
                             </button>
                         )
                 }

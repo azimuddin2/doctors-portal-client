@@ -10,10 +10,10 @@ const ActiveLink = ({ children, to, ...props }) => {
             style={{
                 background: match ? '#F1F5F9' : '',
                 fontWeight: match ? '600' : '500',
-                borderLeft: match ? '4px solid #19D3AE' : '',
+                borderLeft: match ? '4px solid #19D3AE' : 'none',
                 borderRadius: '4px',
                 color: '#3A4256',
-                marginBottom: '2px'
+                marginBottom: '4px'
             }}
             to={to}
             {...props}
