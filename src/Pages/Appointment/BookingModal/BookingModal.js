@@ -25,7 +25,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
             patientPhone: event.target.phone.value
         };
 
-        fetch('http://localhost:5000/booking', {
+        fetch('https://doctors-portal-server-ashen-eight.vercel.app/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -52,11 +52,11 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2 text-white">✕</label>
+                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle btn-accent absolute right-2 top-2 text-white">✕</label>
                     <h3 className="font-semibold text-2xl text-center">{name}</h3>
                     <form
                         onSubmit={handleBooking}
-                        className='grid grid-cols-1 gap-4 justify-items-center my-6'
+                        className='grid grid-cols-1 gap-4 justify-items-center my-3'
                     >
                         <input
                             type="text"

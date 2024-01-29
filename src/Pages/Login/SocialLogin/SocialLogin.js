@@ -35,7 +35,7 @@ const SocialLogin = () => {
             name,
             email
         };
-        fetch('http://localhost:5000/user', {
+        fetch('https://doctors-portal-server-ashen-eight.vercel.app/user', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

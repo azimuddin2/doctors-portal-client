@@ -10,7 +10,7 @@ const CheckoutForm = ({ payment, setPayment, refetch }) => {
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://doctors-portal-server-ashen-eight.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const CheckoutForm = ({ payment, setPayment, refetch }) => {
                 paymentId: _id
             };
 
-            fetch('http://localhost:5000/payments', {
+            fetch('https://doctors-portal-server-ashen-eight.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
