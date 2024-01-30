@@ -10,11 +10,13 @@ import { Fade } from 'react-reveal';
 import useTitle from '../../../hooks/useTitle';
 import useAuth from '../../../hooks/useAuth';
 import { MdErrorOutline } from 'react-icons/md';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     useTitle('Login');
     const { signIn } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const [adminAccess, setAdminAccess] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
@@ -57,6 +59,28 @@ const Login = () => {
 
     if (token) {
         navigate(from, { replace: true });
+    }
+
+    if (adminAccess === true) {
+        Swal.fire({
+            icon: "info",
+            title: "Admin Access🔐",
+            html: `
+            <div>
+                <p class="block text-left ml-2 text-lg font-medium text-slate-700">Email</p>
+                <input value="adminaccess@gmail.com" id="email" readOnly class="input input-bordered w-full focus:outline-none text-lg"/>
+           </div>
+            <div class="mt-3">
+                <p class="block text-left ml-2 text-lg font-medium text-slate-700">Password</p>
+                <input value="123456@" id="password" readOnly class="input input-bordered w-full focus:outline-none text-lg"/>
+           </div>
+        `,
+            showConfirmButton: false,
+            showCancelButton: true,
+            cancelButtonText: 'Close',
+            cancelButtonColor: '#07332F',
+        });
+        setAdminAccess(false);
     }
 
     return (
