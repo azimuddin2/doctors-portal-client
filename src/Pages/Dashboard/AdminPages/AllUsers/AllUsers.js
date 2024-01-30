@@ -54,7 +54,7 @@ const AllUsers = () => {
 
     return (
         <div className='min-h-screen p-5 lg:p-12' style={{ backgroundColor: '#F1F5F9' }}>
-            <h2 className='text-2xl font-medium mb-4'>All Users: {users?.length}</h2>
+            <h2 className='text-2xl font-medium mb-4'>All Users</h2>
             <div className="overflow-x-auto rounded-lg">
                 <table className="table w-full">
                     <thead className='bg-[#E6E6E6] uppercase text-accent'>

@@ -70,7 +70,7 @@ const Navbar = () => {
             <div className="navbar-start">
                 <Link to='/' className='flex justify-items-center items-center'>
                     {/* <img className='w-7 md:w-9' src={logo} alt="logo" /> */}
-                    <p className='font-bold lg:text-xl ml-1 text-accent font-family'>Doctors Portal</p>
+                    <p className='font-bold lg:text-xl text-accent font-family'>Doctors Portal</p>
                 </Link>
             </div>
             <div className='navbar-end hidden lg:flex items-center'>
